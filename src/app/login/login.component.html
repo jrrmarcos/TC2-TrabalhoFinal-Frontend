@@ -1,6 +1,6 @@
 <mat-card>
-    <mat-card-title>Entrar</mat-card-title>
-    <form (ngSubmit)="onSubmitLogin()" [formGroup]="loginForm">
+    <mat-card-title>Seja bem vindo!</mat-card-title>
+    <form [formGroup]="loginForm">
         <mat-form-field>
             <input matInput placeholder="Nome" formControlName="username">
         </mat-form-field>
@@ -12,10 +12,10 @@
     </form>
 </mat-card>
 
-<button mat-raised-button color="primary" type="submit">
-    Salvar
+<button mat-raised-button (click)="onSubmitLogin()" color="primary" type="submit">
+    Entrar
 </button>
 
-<button mat-raised-button color="primary">
+<button mat-raised-button color="primary" routerLink="/cadastro">
     Registre-se
 </button>

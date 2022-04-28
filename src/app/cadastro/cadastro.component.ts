@@ -17,7 +17,7 @@ export class CadastroComponent implements OnInit {
     username: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
-    confirmPassword: new FormControl('', Validators.required)
+    passwordconfirm: new FormControl('', Validators.required)
   });
 
   constructor(private router: Router, 
@@ -29,7 +29,7 @@ export class CadastroComponent implements OnInit {
   
   onSubmitRegister() {
     if (!this.registerForm.invalid) {
-      if (this.registerForm.value.password == this.registerForm.value.confirmPassword) {
+      if (this.registerForm.value.password == this.registerForm.value.passwordconfirm) {
         //Seta usuário
         this.user = this.registerForm.value;
         this.user.password = this.user.password;
@@ -41,7 +41,7 @@ export class CadastroComponent implements OnInit {
             sessionStorage.setItem('user', JSON.stringify(res.body.data[0]))
             alert('Registro realizado com sucesso!')
             this.user = null;
-            location.href = location.href + '/home';
+            this.router.navigate['/']
           } else {
             alert('Não foi possível efetuar o Registro')
           }
@@ -52,5 +52,9 @@ export class CadastroComponent implements OnInit {
     } else {
       alert('Dados ausentes! - Preencha todos os campos')
     }
+  }
+
+  cancelar() {
+    this.router.navigate['/login']
   }
 }

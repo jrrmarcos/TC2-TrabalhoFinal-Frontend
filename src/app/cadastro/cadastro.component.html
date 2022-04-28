@@ -1,6 +1,6 @@
 <mat-card>
-    <mat-card-title>Entrar</mat-card-title>
-    <form (ngSubmit)="onSubmitRegister()" [formGroup]="registerForm">
+    <mat-card-title>Cadastre-se</mat-card-title>
+    <form [formGroup]="registerForm">
         <mat-form-field>
             <input matInput placeholder="Nome" formControlName="username">
         </mat-form-field>
@@ -14,12 +14,17 @@
         </mat-form-field>
 
         <mat-form-field>
-            <input matInput placeholder="Confirme a Senha" formControlName="password-confirm">
+            <input matInput placeholder="Confirme a Senha" formControlName="passwordconfirm">
         </mat-form-field>
 
     </form>
 </mat-card>
 
-<button mat-raised-button color="primary" type="submit">
+<button mat-raised-button (click)="onSubmitRegister()" color="primary" type="submit">
     Salvar
+</button>
+
+
+<button mat-raised-button color="primary" type="submit" routerLink="/login">
+    Cancelar
 </button>

@@ -31,6 +31,8 @@ import { BrandUpdateComponent } from './brand/brand-update/brand-update.componen
 import { BrandReadComponent } from './brand/brand-read/brand-read.component';
 import { BrandDeleteComponent } from './brand/brand-delete/brand-delete.component';
 
+import { Router, RouterModule } from '@angular/router';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,7 +65,8 @@ import { BrandDeleteComponent } from './brand/brand-delete/brand-delete.componen
     MatInputModule,
     FormsModule,
     MatTableModule,
-    HttpClientModule  
+    HttpClientModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
