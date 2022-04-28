@@ -6,12 +6,12 @@ import { Brand } from 'src/app/model/brand';
 import { User } from 'src/app/model/user';
 
 @Component({
-  selector: 'app-brand-form',
-  templateUrl: './brand-form.component.html',
-  styleUrls: ['./brand-form.component.css']
+  selector: 'app-brand-create',
+  templateUrl: './brand-create.component.html',
+  styleUrls: ['./brand-create.component.css']
 })
-export class BrandFormComponent implements OnInit {
-
+export class BrandCreateComponent implements OnInit {
+  
   brand!: Brand
   user!: User
 
@@ -37,7 +37,7 @@ export class BrandFormComponent implements OnInit {
         if(res.ok){
           this.router.navigate(['/']);
         } else{
-          alert('Não foi possível efetuar o cadastro do autor')
+          alert('Não foi possível efetuar o cadastro da marca')
         }
       })
     } else{

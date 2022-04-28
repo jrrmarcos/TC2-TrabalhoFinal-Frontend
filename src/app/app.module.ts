@@ -15,7 +15,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { HomeComponent } from './components/views/home/home.component';
 import { BrandCrudComponent } from './components/views/brand-crud/brand-crud.component';
-import { BrandFormComponent } from './components/forms/brand-form/brand-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input';
@@ -26,6 +25,11 @@ import { CarCreateComponent } from './car/car-create/car-create.component';
 import { CarUpdateComponent } from './car/car-update/car-update.component';
 import { CarDeleteComponent } from './car/car-delete/car-delete.component';
 import { MatTableModule } from '@angular/material/table';
+import { HttpClientModule } from '@angular/common/http';
+import { BrandCreateComponent } from './brand/brand-create/brand-create.component';
+import { BrandUpdateComponent } from './brand/brand-update/brand-update.component';
+import { BrandReadComponent } from './brand/brand-read/brand-read.component';
+import { BrandDeleteComponent } from './brand/brand-delete/brand-delete.component';
 
 @NgModule({
   declarations: [
@@ -35,13 +39,16 @@ import { MatTableModule } from '@angular/material/table';
     NavComponent,
     HomeComponent,
     BrandCrudComponent,
-    BrandFormComponent,
     CarReadComponent,
     LoginComponent,
     CadastroComponent,
     CarCreateComponent,
     CarUpdateComponent,
-    CarDeleteComponent
+    CarDeleteComponent,
+    BrandCreateComponent,
+    BrandUpdateComponent,
+    BrandReadComponent,
+    BrandDeleteComponent
   ],
   imports: [
     BrowserModule,
@@ -55,8 +62,8 @@ import { MatTableModule } from '@angular/material/table';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    MatTableModule
-    
+    MatTableModule,
+    HttpClientModule  
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -42,7 +42,7 @@ export class CarUpdateComponent implements OnInit {
         if(res.ok){
           this.router.navigate(['/']);
         } else{
-          alert('Não foi possível efetuar o cadastro do veículo')
+          alert('Não foi possível efetuar a atualização do veículo')
         }
       })
     } else{

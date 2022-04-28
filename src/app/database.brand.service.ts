@@ -1,6 +1,7 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'; 
 import { Observable } from 'rxjs';
+import { Brand } from './model/brand';
 
 @Injectable({
   providedIn: 'root'
@@ -17,19 +18,21 @@ export class DatabaseBrandService {
 
   baseURL = "https://tc2-trabalho-final-api.herokuapp.com/api/";
 
-  getAllAuthor(user: { _id: string; }) : Observable<any> {
-    return this.http.get(this.baseURL + "author/all/" + user._id);
+  getAllBrand(user) : Observable<Brand[]> {
+    return this.http.get<Brand[]>(this.baseURL + "author/all/" + user._id);
   }
 
-  addBrand(brand: any): Observable<any> {
-    return this.http.post(this.baseURL + 'author/', brand, { observe: "response" });
+  addBrand(brand: Brand): Observable<any> {
+    return this.http.post<Brand>(this.baseURL + 'author/', brand, { observe: "response" });
   }
 
-  deleteAuthor(id: string) : Observable<any> {
-    return this.http.delete(this.baseURL + 'author/' + id, { observe: "response"})
+  deleteBrand(id: string) : Observable<any> {
+    const url = `${this.baseURL}/author/${id}`
+    return this.http.delete<Brand>(url, { observe: "response"})
   }
 
-  updateAuthor(brand: { _id: string; }) : Observable<any> {
-    return this.http.put(this.baseURL + 'author/' + brand._id, brand, { observe: "response"})
+  updateBrand(brand: Brand) : Observable<any> {
+    const url = `${this.baseURL}/author/${brand._id}`
+    return this.http.put(url, brand, { observe: "response"})
   }
 }
