@@ -22,6 +22,11 @@ export class DatabaseBrandService {
     return this.http.get<Brand[]>(this.baseURL + "author/all/" + user._id);
   }
 
+  getById(id: string): Observable<Brand> {
+    const url = `${this.baseURL}/${id}`
+    return this.http.get<Brand>(url)
+  }
+
   addBrand(brand: Brand): Observable<any> {
     return this.http.post<Brand>(this.baseURL + 'author/', brand, { observe: "response" });
   }

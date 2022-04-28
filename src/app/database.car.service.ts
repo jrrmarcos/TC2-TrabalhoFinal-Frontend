@@ -23,6 +23,11 @@ export class DatabaseCarService {
     return this.http.get<Car[]>(this.baseURL + "book/all" + user._id)
   }
 
+  getById(id: string): Observable<Car> {
+    const url = `${this.baseURL}/${id}`
+    return this.http.get<Car>(url)
+  }
+
   addCar(car: Car): Observable<any> {
     return this.http.post<Car>(this.baseURL + 'book/', car)
   }

@@ -43,7 +43,7 @@ export class CarCreateComponent implements OnInit {
       this.car.userid = this.getUser()._id
       this.serviceCar.addCar(this.car).subscribe(res => {
         if(res.ok){
-          this.router.navigate(['/']);
+          this.router.navigate(['/veiculos']);
         } else{
           alert('Não foi possível efetuar o cadastro do veículo')
         }
@@ -54,7 +54,7 @@ export class CarCreateComponent implements OnInit {
   }
 
   cancelar() {
-    this.router.navigate(['/'])
+    this.router.navigate(['/veiculos'])
   }
 
 }

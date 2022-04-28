@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DatabaseBrandService } from 'src/app/database.brand.service';
 import { Brand } from 'src/app/model/brand';
 import { User } from 'src/app/model/user';
@@ -20,9 +20,14 @@ export class BrandUpdateComponent implements OnInit {
   })
 
   constructor(private router: Router,
-    private serviceBrand: DatabaseBrandService) { }
+              private route: ActivatedRoute,
+              private serviceBrand: DatabaseBrandService) { }
 
   ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id')
+    this.serviceBrand.getById(id).subscribe(brand => {
+      this.brand = brand
+    })
   }
 
   getUser(): User {
@@ -35,7 +40,7 @@ export class BrandUpdateComponent implements OnInit {
       this.brand.userid = this.getUser()._id;
       this.serviceBrand.addBrand(this.brand).subscribe(res => {
         if(res.ok){
-          this.router.navigate(['/']);
+          this.router.navigate(['/marcas']);
         } else{
           alert('Não foi possível efetuar a atualização da marca')
         }
@@ -46,7 +51,7 @@ export class BrandUpdateComponent implements OnInit {
   }
 
   cancelar() {
-    this.router.navigate(['/'])
+    this.router.navigate(['/marcas'])
   }
 
 }

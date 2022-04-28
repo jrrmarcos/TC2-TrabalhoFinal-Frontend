@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DatabaseBrandService } from 'src/app/database.brand.service';
 import { Brand } from 'src/app/model/brand';
 
@@ -18,19 +18,24 @@ export class BrandDeleteComponent implements OnInit {
   })
   
   constructor(private router: Router, 
+              private route: ActivatedRoute,
               private serviceBrand: DatabaseBrandService) { }
 
   ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id')
+    this.serviceBrand.getById(id).subscribe(brand => {
+      this.brand = brand
+    })
   }
 
   deleteBrand(): void {
     this.serviceBrand.deleteBrand(`${this.brand._id}`).subscribe(() => {
-      this.router.navigate(['/'])
+      this.router.navigate(['/marcas'])
     })
   }
 
   cancelar(): void {
-    this.router.navigate(['/'])
+    this.router.navigate(['/marcas'])
   }
 
 }

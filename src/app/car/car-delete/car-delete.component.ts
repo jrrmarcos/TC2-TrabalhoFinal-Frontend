@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DatabaseCarService } from 'src/app/database.car.service';
 import { Car } from 'src/app/model/car';
 
@@ -21,19 +21,24 @@ export class CarDeleteComponent implements OnInit {
   });
   
   constructor(private router: Router,
+              private route: ActivatedRoute,
               private serviceCar: DatabaseCarService) { }
 
   ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id')
+    this.serviceCar.getById(id).subscribe(car => {
+      this.car = car 
+    })
   }
 
   deleteCar(): void {
     this.serviceCar.deleteCar(`${this.car._id}`).subscribe(() => {
-      this.router.navigate(['/'])
+      this.router.navigate(['/veiculos'])
     })
   }
 
   cancelar(): void {
-    this.router.navigate(['/'])
+    this.router.navigate(['/veiculos'])
   }
 
 }
