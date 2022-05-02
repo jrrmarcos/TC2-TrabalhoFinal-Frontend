@@ -46,4 +46,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  chamaCadastro() {
+    this.router.navigate(['/cadastro'])
+  }
 }

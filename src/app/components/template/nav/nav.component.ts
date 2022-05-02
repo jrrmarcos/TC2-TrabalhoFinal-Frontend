@@ -15,6 +15,6 @@ export class NavComponent implements OnInit {
   
   deslogar() {
     sessionStorage.removeItem('user');
-    this.router.navigate(['/']);
+    this.router.navigate(['/login']);
   }
 }
