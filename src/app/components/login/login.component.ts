@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DatabaseUserService } from '../database.user.service';
-import { User } from '../model/user';
+import { UserService } from 'src/app/services/user.service';
+import { User } from '../../model/user.model';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   });
 
   constructor(private router: Router,
-              private serviceUser: DatabaseUserService) { }
+              private serviceUser: UserService) { }
 
   ngOnInit(): void {
   }

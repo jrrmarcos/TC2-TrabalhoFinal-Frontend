@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { DatabaseCarService } from 'src/app/database.car.service';
-import { Car } from 'src/app/model/car';
-import { User } from 'src/app/model/user';
+import { Car } from 'src/app/model/car.model';
+import { User } from 'src/app/model/user.model';
+import { CarService } from 'src/app/services/car.service';
 
 @Component({
   selector: 'app-car-read',
@@ -14,7 +14,7 @@ export class CarReadComponent implements OnInit {
   cars: Car[]
   displayedColumns = ['name','color','year','brand','action']
 
-  constructor(private serviceCar: DatabaseCarService,
+  constructor(private serviceCar: CarService,
               private router: Router) { }
 
   ngOnInit(): void {

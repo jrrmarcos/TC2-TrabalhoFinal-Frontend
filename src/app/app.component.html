@@ -1,12 +1,11 @@
-<ng-template [ngIf]="isNotLogged()">
+<ng-template [ngIf]="!auth()">
     <app-header></app-header>
-    <app-login></app-login>
+    <app-nav></app-nav>
     <app-footer></app-footer>
 </ng-template>
 
-<ng-template [ngIf]="!isNotLogged()">
+<ng-template [ngIf]="auth()">
     <app-header></app-header>
-    <app-nav></app-nav>
-    <router-outlet></router-outlet>
+    <app-login></app-login>
     <app-footer></app-footer>
 </ng-template>

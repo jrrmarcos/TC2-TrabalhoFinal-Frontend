@@ -1,12 +1,12 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'; 
 import { Observable } from 'rxjs';
-import { Brand } from './model/brand';
+import { Brand } from '../model/brand.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DatabaseBrandService {
+export class BrandService {
 
   constructor(private http: HttpClient) { }
 

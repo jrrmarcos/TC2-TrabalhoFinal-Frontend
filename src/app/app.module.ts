@@ -10,6 +10,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { FooterComponent } from './components/template/footer/footer.component';
 import { NavComponent } from './components/template/nav/nav.component';
 
+import { MatCardModule } from '@angular/material/card';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { HomeComponent } from './components/views/home/home.component';
@@ -17,18 +18,17 @@ import { BrandCrudComponent } from './components/views/brand-crud/brand-crud.com
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input';
-import { CarReadComponent } from './car/car-read/car-read.component';
-import { LoginComponent } from './login/login.component';
-import { CarCreateComponent } from './car/car-create/car-create.component';
-import { CarUpdateComponent } from './car/car-update/car-update.component';
-import { CarDeleteComponent } from './car/car-delete/car-delete.component';
+import { CarReadComponent } from './components/car/car-read/car-read.component';
+import { LoginComponent } from './components/login/login.component';
+import { CarCreateComponent } from './components/car/car-create/car-create.component';
+import { CarUpdateComponent } from './components/car/car-update/car-update.component';
+import { CarDeleteComponent } from './components/car/car-delete/car-delete.component';
 import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
-import { BrandCreateComponent } from './brand/brand-create/brand-create.component';
-import { BrandUpdateComponent } from './brand/brand-update/brand-update.component';
-import { BrandReadComponent } from './brand/brand-read/brand-read.component';
-import { BrandDeleteComponent } from './brand/brand-delete/brand-delete.component';
-import { MatCardModule } from '@angular/material/card';
+import { BrandCreateComponent } from './components/brand/brand-create/brand-create.component';
+import { BrandUpdateComponent } from './components/brand/brand-update/brand-update.component';
+import { BrandReadComponent } from './components/brand/brand-read/brand-read.component';
+import { BrandDeleteComponent } from './components/brand/brand-delete/brand-delete.component';
 
 import { Router, RouterModule } from '@angular/router';
 

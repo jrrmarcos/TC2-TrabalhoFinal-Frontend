@@ -8,12 +8,11 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'TC2-TrabalhoFinal-Frontend';
 
-  isNotLogged(){
+  auth(){
     if(sessionStorage.getItem('user') != null){
       return false
     } else {
       return true
     }
   }
-
 }

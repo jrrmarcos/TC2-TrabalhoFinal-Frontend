@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BrandCreateComponent } from './brand/brand-create/brand-create.component';
-import { BrandDeleteComponent } from './brand/brand-delete/brand-delete.component';
-import { BrandReadComponent } from './brand/brand-read/brand-read.component';
-import { BrandUpdateComponent } from './brand/brand-update/brand-update.component';
-import { CarCreateComponent } from './car/car-create/car-create.component';
-import { CarDeleteComponent } from './car/car-delete/car-delete.component';
-import { CarReadComponent } from './car/car-read/car-read.component';
-import { CarUpdateComponent } from './car/car-update/car-update.component';
+import { BrandCreateComponent } from './components/brand/brand-create/brand-create.component';
+import { BrandDeleteComponent } from './components/brand/brand-delete/brand-delete.component';
+import { BrandReadComponent } from './components/brand/brand-read/brand-read.component';
+import { BrandUpdateComponent } from './components/brand/brand-update/brand-update.component';
+import { CarCreateComponent } from './components/car/car-create/car-create.component';
+import { CarDeleteComponent } from './components/car/car-delete/car-delete.component';
+import { CarReadComponent } from './components/car/car-read/car-read.component';
+import { CarUpdateComponent } from './components/car/car-update/car-update.component';
 import { HomeComponent } from './components/views/home/home.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
   {
@@ -17,7 +17,7 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: "",
+    path: "home",
     component: HomeComponent
   },
   {
@@ -54,7 +54,7 @@ const routes: Routes = [
   },
   {
     path: "**",
-    component: HomeComponent
+    component: LoginComponent
   }
 ];
 

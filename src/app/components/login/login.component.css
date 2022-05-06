@@ -7,9 +7,3 @@ button {
     margin-top: 20px;
     margin-right: 15px;
 }
-
-.center {
-    display: flex; 
-    justify-content: center;
-    height: 65vh;
-}

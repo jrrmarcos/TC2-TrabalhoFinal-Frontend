@@ -1,5 +1,5 @@
 <div *ngIf="exibirCadastrar">
-    <div class="center">
+    <div>
         <mat-card>
             <mat-card-title>Olá, efetue o login para utilizar o sistema</mat-card-title>
             <form class="form has-text-centered" [formGroup]="loginForm">
@@ -28,7 +28,7 @@
 
 
 <div *ngIf="!exibirCadastrar">
-    <div class="center">
+    <div>
         <mat-card>
             <mat-card-title>Cadastre-se</mat-card-title>
             <form [formGroup]="registerForm">

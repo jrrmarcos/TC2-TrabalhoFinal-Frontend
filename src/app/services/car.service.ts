@@ -1,12 +1,12 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Car } from './model/car';
+import { Car } from '../model/car.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DatabaseCarService {
+export class CarService {
 
   constructor(private http : HttpClient) { }
 

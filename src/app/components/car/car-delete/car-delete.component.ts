@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DatabaseCarService } from 'src/app/database.car.service';
-import { Car } from 'src/app/model/car';
+import { Car } from 'src/app/model/car.model';
+import { CarService } from 'src/app/services/car.service';
 
 @Component({
   selector: 'app-car-delete',
@@ -22,7 +22,7 @@ export class CarDeleteComponent implements OnInit {
   
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private serviceCar: DatabaseCarService) { }
+              private serviceCar: CarService) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id')

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DatabaseBrandService } from 'src/app/database.brand.service';
-import { Brand } from 'src/app/model/brand';
+import { Brand } from 'src/app/model/brand.model';
+import { BrandService } from 'src/app/services/brand.service';
 
 @Component({
   selector: 'app-brand-delete',
@@ -19,7 +19,7 @@ export class BrandDeleteComponent implements OnInit {
   
   constructor(private router: Router, 
               private route: ActivatedRoute,
-              private serviceBrand: DatabaseBrandService) { }
+              private serviceBrand: BrandService) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id')
