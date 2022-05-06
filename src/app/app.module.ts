@@ -31,6 +31,7 @@ import { BrandReadComponent } from './components/brand/brand-read/brand-read.com
 import { BrandDeleteComponent } from './components/brand/brand-delete/brand-delete.component';
 
 import { Router, RouterModule } from '@angular/router';
+import { CarCrudComponent } from './components/views/car-crud/car-crud.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { Router, RouterModule } from '@angular/router';
     BrandCreateComponent,
     BrandUpdateComponent,
     BrandReadComponent,
-    BrandDeleteComponent
+    BrandDeleteComponent,
+    CarCrudComponent
   ],
   imports: [
     BrowserModule,

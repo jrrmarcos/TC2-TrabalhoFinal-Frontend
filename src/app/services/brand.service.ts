@@ -12,8 +12,13 @@ export class BrandService {
 
   @Output() fire: EventEmitter<any> = new EventEmitter();
 
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type' : 'application/json'})
+  private getOptions() {
+    let httpOptions = {
+        headers: new HttpHeaders({ 
+          'Content-Type' : 'application/json'
+        })
+    }
+    return httpOptions
   }
 
   baseURL = "https://tc2-trabalho-final-api.herokuapp.com/api/";
