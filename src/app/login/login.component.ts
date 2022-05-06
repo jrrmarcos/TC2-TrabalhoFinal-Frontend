@@ -12,16 +12,32 @@ import { User } from '../model/user';
 export class LoginComponent implements OnInit {
 
   user: User
+  exibirCadastrar: boolean = true;
 
   loginForm = new FormGroup({
     username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
   });
   
+  registerForm = new FormGroup({
+    username: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
+    passwordconfirm: new FormControl('', Validators.required)
+  });
+
   constructor(private router: Router,
               private serviceUser: DatabaseUserService) { }
 
   ngOnInit(): void {
+  }
+
+  abrirCadastrar() {
+    this.exibirCadastrar = false;
+  }
+
+  fecharCadastrar() {
+    this.exibirCadastrar = true;
   }
 
   onSubmitLogin() {
@@ -46,7 +62,31 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  chamaCadastro() {
-    this.router.navigate(['/cadastro'])
+  onSubmitRegister() {
+    if (!this.registerForm.invalid) {
+      if (this.registerForm.value.password == this.registerForm.value.passwordconfirm) {
+        //Seta usuário
+        this.user = this.registerForm.value;
+        this.user.password = this.user.password;
+        this.serviceUser.addUser(this.user).subscribe(res => {
+          if (res.ok) {
+            res.body.data = res.body.data.map(function (e) {
+              return { "_id": e.id, "username": e.username, "email": e.email }
+            });
+            sessionStorage.setItem('user', JSON.stringify(res.body.data[0]))
+            alert('Registro realizado com sucesso!')
+            this.user = null;
+            this.router.navigate['/']
+          } else {
+            alert('Não foi possível efetuar o Registro')
+          }
+        });
+      } else {
+        alert('As duas senhas não conferem!')
+      }
+    } else {
+      alert('Dados ausentes! - Preencha todos os campos')
+    }
   }
+
 }

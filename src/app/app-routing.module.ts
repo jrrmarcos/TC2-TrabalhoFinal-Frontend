@@ -4,7 +4,6 @@ import { BrandCreateComponent } from './brand/brand-create/brand-create.componen
 import { BrandDeleteComponent } from './brand/brand-delete/brand-delete.component';
 import { BrandReadComponent } from './brand/brand-read/brand-read.component';
 import { BrandUpdateComponent } from './brand/brand-update/brand-update.component';
-import { CadastroComponent } from './cadastro/cadastro.component';
 import { CarCreateComponent } from './car/car-create/car-create.component';
 import { CarDeleteComponent } from './car/car-delete/car-delete.component';
 import { CarReadComponent } from './car/car-read/car-read.component';
@@ -16,10 +15,6 @@ const routes: Routes = [
   {
     path: "login",
     component: LoginComponent
-  },
-  {
-    path: "cadastro",
-    component: CadastroComponent
   },
   {
     path: "",

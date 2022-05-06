@@ -11,7 +11,6 @@ import { FooterComponent } from './components/template/footer/footer.component';
 import { NavComponent } from './components/template/nav/nav.component';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { HomeComponent } from './components/views/home/home.component';
 import { BrandCrudComponent } from './components/views/brand-crud/brand-crud.component';
@@ -20,7 +19,6 @@ import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input';
 import { CarReadComponent } from './car/car-read/car-read.component';
 import { LoginComponent } from './login/login.component';
-import { CadastroComponent } from './cadastro/cadastro.component';
 import { CarCreateComponent } from './car/car-create/car-create.component';
 import { CarUpdateComponent } from './car/car-update/car-update.component';
 import { CarDeleteComponent } from './car/car-delete/car-delete.component';
@@ -30,6 +28,7 @@ import { BrandCreateComponent } from './brand/brand-create/brand-create.componen
 import { BrandUpdateComponent } from './brand/brand-update/brand-update.component';
 import { BrandReadComponent } from './brand/brand-read/brand-read.component';
 import { BrandDeleteComponent } from './brand/brand-delete/brand-delete.component';
+import { MatCardModule } from '@angular/material/card';
 
 import { Router, RouterModule } from '@angular/router';
 
@@ -43,7 +42,6 @@ import { Router, RouterModule } from '@angular/router';
     BrandCrudComponent,
     CarReadComponent,
     LoginComponent,
-    CadastroComponent,
     CarCreateComponent,
     CarUpdateComponent,
     CarDeleteComponent,

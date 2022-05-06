@@ -1,21 +1,66 @@
-<mat-card>
-    <mat-card-title>Seja bem vindo!</mat-card-title>
-    <form [formGroup]="loginForm">
-        <mat-form-field>
-            <input matInput placeholder="Nome" formControlName="username">
-        </mat-form-field>
+<div *ngIf="exibirCadastrar">
+    <div class="center">
+        <mat-card>
+            <mat-card-title>Olá, efetue o login para utilizar o sistema</mat-card-title>
+            <form class="form has-text-centered" [formGroup]="loginForm">
 
-        <mat-form-field>
-            <input matInput placeholder="Senha" formControlName="password">
-        </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Nome" formControlName="username">
+                </mat-form-field>
 
-    </form>
-</mat-card>
+                <mat-form-field>
+                    <input matInput placeholder="Senha" formControlName="password" type="password">
+                </mat-form-field>
 
-<button mat-raised-button (click)="onSubmitLogin()" color="primary" type="submit">
-    Entrar
-</button>
+            </form>
+        </mat-card>
+    </div>
 
-<button mat-raised-button color="primary" (click)="chamaCadastro()">
-    Registre-se
-</button>
+    <div>
+        <button mat-raised-button (click)="onSubmitLogin()" type="submit">
+            Entrar
+        </button>
+    </div>
+    <button mat-raised-button (click)="abrirCadastrar()">
+        Registre-se
+    </button>
+</div>
+
+
+<div *ngIf="!exibirCadastrar">
+    <div class="center">
+        <mat-card>
+            <mat-card-title>Cadastre-se</mat-card-title>
+            <form [formGroup]="registerForm">
+
+                <mat-form-field>
+                    <input matInput placeholder="Nome de Usuário" formControlName="username">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="E-mail" formControlName="email" type="email">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="Senha" formControlName="password" type="password">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="Confirme a Senha" formControlName="passwordconfirm" type="password">
+                </mat-form-field>
+
+            </form>
+        </mat-card>
+    </div>
+
+    <div>
+        <button mat-raised-button color="primary" (click)="onSubmitRegister()" type="submit">
+            Salvar
+        </button>
+
+
+        <button mat-raised-button type="submit" (click)="fecharCadastrar()">
+            Cancelar
+        </button>
+    </div>
+</div>
