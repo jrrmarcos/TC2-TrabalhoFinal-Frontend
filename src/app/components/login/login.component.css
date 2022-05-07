@@ -3,7 +3,27 @@ form {
     flex-direction: column;
 }
 
-button {
+.form-login {
+    margin: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-button {
     margin-top: 20px;
     margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
 }
+
+.register-button {
+    margin-top: 20px;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+

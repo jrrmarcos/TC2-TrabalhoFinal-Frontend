@@ -16,14 +16,16 @@
         </mat-card>
     </div>
 
-    <div>
-        <button mat-raised-button (click)="onSubmitLogin()" type="submit">
+    <div class="login-button">
+        <button mat-raised-button color="primary" (click)="onSubmitLogin()" type="submit">
             Entrar
         </button>
     </div>
-    <button mat-raised-button (click)="abrirCadastrar()">
-        Registre-se
-    </button>
+    <div class="register-button">
+        <button mat-raised-button (click)="abrirCadastrar()">
+            Registre-se
+        </button>
+    </div>
 </div>
 
 
@@ -53,12 +55,12 @@
         </mat-card>
     </div>
 
-    <div>
+    <div class="login-button">
         <button mat-raised-button color="primary" (click)="onSubmitRegister()" type="submit">
             Salvar
         </button>
-
-
+    </div>
+    <div class="register-button">
         <button mat-raised-button type="submit" (click)="fecharCadastrar()">
             Cancelar
         </button>
