@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-nav',
@@ -8,13 +9,15 @@ import { Router } from '@angular/router';
 })
 export class NavComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+    private serviceUser: UserService) { }
 
   ngOnInit(): void {
   }
   
   deslogar() {
     sessionStorage.removeItem('user');
+    this.serviceUser.showMessage('Até a próxima!')
     this.router.navigate(['/login']);
   }
 }

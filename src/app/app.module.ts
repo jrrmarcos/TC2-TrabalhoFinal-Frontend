@@ -34,6 +34,7 @@ import { RouterModule } from '@angular/router';
 import { CarCrudComponent } from './components/views/car-crud/car-crud.component';
 
 import {MatButtonModule} from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar'
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatTableModule,
     HttpClientModule,
     RouterModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

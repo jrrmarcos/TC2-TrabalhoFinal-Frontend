@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventEmitter, Injectable, Output } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { catchError, EMPTY, map, Observable } from 'rxjs';
 
@@ -7,10 +8,10 @@ import { catchError, EMPTY, map, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  snackBar: any;
 
   constructor(private http : HttpClient,
-              private router: Router) { }
+              private router: Router,
+              private snackBar: MatSnackBar) { }
 
   @Output() fire: EventEmitter<any> = new EventEmitter();
 
@@ -30,7 +31,8 @@ export class UserService {
       duration: 3000,
       horizontalPosition: "right",
       verticalPosition: "top",
-      panelClass: isError ? ['msg-error'] : ['msg-success']
+      //panelClass: isError ? ['msg-error'] : ['msg-success']
+      panelClass: isError ? ['failClass'] : ['successClass']
     })
   }
   

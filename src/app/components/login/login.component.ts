@@ -50,15 +50,15 @@ export class LoginComponent implements OnInit {
             return { "_id": e.id, "username": e.username, "email": e.email }
           });
           sessionStorage.setItem('user', JSON.stringify(res.body.data[0]))
-          alert('Login realizado com sucesso!')
+          this.serviceUser.showMessage('Login realizado com sucesso!')
           this.user = null;
           this.router.navigate(['/home']);
         } else {
-          alert('Não foi possível efetuar o login')
+          this.serviceUser.showMessage('Não foi possível efetuar o login')
         }
       })
     } else {
-      alert('Dados ausentes! - Preencha todos os campos')
+      this.serviceUser.showMessage('Dados ausentes! - Preencha todos os campos')
     }
   }
 
@@ -74,18 +74,18 @@ export class LoginComponent implements OnInit {
               return { "_id": e.id, "username": e.username, "email": e.email }
             });
             sessionStorage.setItem('user', JSON.stringify(res.body.data[0]))
-            alert('Registro realizado com sucesso!')
+            this.serviceUser.showMessage('Registro realizado com sucesso!')
             this.user = null;
             this.router.navigate['/']
           } else {
-            alert('Não foi possível efetuar o Registro')
+            this.serviceUser.showMessage('Não foi possível efetuar o Registro')
           }
         });
       } else {
-        alert('As duas senhas não conferem!')
+        this.serviceUser.showMessage('As duas senhas não conferem!')
       }
     } else {
-      alert('Dados ausentes! - Preencha todos os campos')
+      this.serviceUser.showMessage('Dados ausentes! - Preencha todos os campos')
     }
   }
 
