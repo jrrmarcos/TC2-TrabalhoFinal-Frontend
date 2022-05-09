@@ -13,7 +13,7 @@ export class BrandReadComponent implements OnInit {
 
   
   brands: Brand[]
-  displayedColumns = ['name','color','year','brand','action']
+  displayedColumns = ['name', 'action']
 
   constructor(private serviceBrand: BrandService,
               private router: Router) { }

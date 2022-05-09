@@ -54,16 +54,16 @@ export class LoginComponent implements OnInit {
           this.user = null;
           this.router.navigate(['/home']);
         } else {
-          this.serviceUser.showMessage('Não foi possível efetuar o login')
+          this.serviceUser.showMessage('Não foi possível efetuar o login', true)
         }
       })
     } else {
-      this.serviceUser.showMessage('Dados ausentes! - Preencha todos os campos')
+      this.serviceUser.showMessage('Dados ausentes! - Preencha todos os campos', true)
     }
   }
 
   onSubmitRegister() {
-    if (!this.registerForm.invalid) {
+    if (this.registerForm.valid) {
       if (this.registerForm.value.password == this.registerForm.value.passwordconfirm) {
         //Seta usuário
         this.user = this.registerForm.value;
@@ -73,19 +73,19 @@ export class LoginComponent implements OnInit {
             res.body.data = res.body.data.map(function (e) {
               return { "_id": e.id, "username": e.username, "email": e.email }
             });
-            sessionStorage.setItem('user', JSON.stringify(res.body.data[0]))
+            //sessionStorage.setItem('user', JSON.stringify(res.body.data[0]))
             this.serviceUser.showMessage('Registro realizado com sucesso!')
-            this.user = null;
-            this.router.navigate['/']
+            //this.user = null;
+            this.fecharCadastrar()
           } else {
-            this.serviceUser.showMessage('Não foi possível efetuar o Registro')
+            this.serviceUser.showMessage('Não foi possível efetuar o Registro', true)
           }
         });
       } else {
-        this.serviceUser.showMessage('As duas senhas não conferem!')
+        this.serviceUser.showMessage('As duas senhas não conferem!', true)
       }
     } else {
-      this.serviceUser.showMessage('Dados ausentes! - Preencha todos os campos')
+      this.serviceUser.showMessage('Dados ausentes! - Preencha todos os campos', true)
     }
   }
 

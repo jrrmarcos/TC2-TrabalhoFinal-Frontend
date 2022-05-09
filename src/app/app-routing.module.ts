@@ -10,6 +10,8 @@ import { CarReadComponent } from './components/car/car-read/car-read.component';
 import { CarUpdateComponent } from './components/car/car-update/car-update.component';
 import { HomeComponent } from './components/views/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { CarCrudComponent } from './components/views/car-crud/car-crud.component';
+import { BrandCrudComponent } from './components/views/brand-crud/brand-crud.component';
 
 const routes: Routes = [
   {
@@ -22,7 +24,7 @@ const routes: Routes = [
   },
   {
     path: "veiculos",
-    component: CarReadComponent
+    component: CarCrudComponent
   },
   {
     path: "veiculos/create",
@@ -38,7 +40,7 @@ const routes: Routes = [
   },
   {
     path: "marcas",
-    component: BrandReadComponent
+    component: BrandCrudComponent
   },
   {
     path: "marcas/create",

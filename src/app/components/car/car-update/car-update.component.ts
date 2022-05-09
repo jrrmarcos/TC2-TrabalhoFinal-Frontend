@@ -45,18 +45,20 @@ export class CarUpdateComponent implements OnInit {
       this.car.userid = this.getUser()._id
       this.serviceCar.addCar(this.car).subscribe(res => {
         if(res.ok){
-          this.router.navigate(['/']);
+          this.serviceCar.showMessage('Veículo alterado!')
+          this.router.navigate(['/veiculos']);
         } else{
-          alert('Não foi possível efetuar a atualização do veículo')
+          this.serviceCar.showMessage('Não foi possível efetuar a atualização do veículo',true)
         }
       })
     } else{
-      alert('Dados ausentes! - Preencha todos os campos')
+      this.serviceCar.showMessage('Dados ausentes! - Preencha todos os campos',true)
     }
   }
 
   cancelar() {
-    this.router.navigate(['/brand'])
+    this.serviceCar.showMessage('Operação cancelada!')
+    this.router.navigate(['/veiculos'])
   }
 
 }

@@ -30,12 +30,13 @@ export class BrandDeleteComponent implements OnInit {
 
   deleteBrand(): void {
     this.serviceBrand.deleteBrand(`${this.brand._id}`).subscribe(() => {
+      this.serviceBrand.showMessage('Marca removida!')
       this.router.navigate(['/marcas'])
     })
   }
 
   cancelar(): void {
+    this.serviceBrand.showMessage('Operação cancelada!')
     this.router.navigate(['/marcas'])
   }
-
 }

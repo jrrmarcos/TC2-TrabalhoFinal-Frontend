@@ -43,17 +43,19 @@ export class CarCreateComponent implements OnInit {
       this.car.userid = this.getUser()._id
       this.serviceCar.addCar(this.car).subscribe(res => {
         if(res.ok){
+          this.serviceCar.showMessage('Veículo cadastrado!')
           this.router.navigate(['/veiculos']);
         } else{
-          alert('Não foi possível efetuar o cadastro do veículo')
+          this.serviceCar.showMessage('Não foi possível efetuar o cadastro do veículo',true)
         }
       })
     } else{
-      alert('Dados ausentes! - Preencha todos os campos')
+      this.serviceCar.showMessage('Dados ausentes! - Preencha todos os campos',true)
     }
   }
 
   cancelar() {
+    this.serviceCar.showMessage('Operação cancelada!')
     this.router.navigate(['/veiculos'])
   }
 

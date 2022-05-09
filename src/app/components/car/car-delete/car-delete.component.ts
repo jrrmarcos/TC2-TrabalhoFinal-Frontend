@@ -33,11 +33,13 @@ export class CarDeleteComponent implements OnInit {
 
   deleteCar(): void {
     this.serviceCar.deleteCar(`${this.car._id}`).subscribe(() => {
+      this.serviceCar.showMessage('Veículo removido!')
       this.router.navigate(['/veiculos'])
     })
   }
 
   cancelar(): void {
+    this.serviceCar.showMessage('Operação cancelada!')
     this.router.navigate(['/veiculos'])
   }
 

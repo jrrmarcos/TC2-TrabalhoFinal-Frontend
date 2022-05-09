@@ -35,18 +35,20 @@ export class BrandCreateComponent implements OnInit {
       this.brand.userid = this.getUser()._id;
       this.serviceBrand.addBrand(this.brand).subscribe(res => {
         if(res.ok){
-          this.router.navigate(['/']);
+          this.serviceBrand.showMessage('Marca cadastrada!')
+          this.router.navigate(['/marcas']);
         } else{
-          alert('Não foi possível efetuar o cadastro da marca')
+          this.serviceBrand.showMessage('Não foi possível efetuar o cadastro da marca',true)
         }
       })
     } else{
-      alert('Dados ausentes! - Preencha todos os campos')
+      this.serviceBrand.showMessage('Dados ausentes! - Preencha todos os campos',true)
     }
   }
 
   cancelar() {
-    this.router.navigate(['/'])
+    this.serviceBrand.showMessage('Operação cancelada!')
+    this.router.navigate(['/marcas'])
   }
 
 }
