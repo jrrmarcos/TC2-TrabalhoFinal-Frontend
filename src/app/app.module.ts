@@ -34,7 +34,12 @@ import { RouterModule } from '@angular/router';
 import { CarCrudComponent } from './components/views/car-crud/car-crud.component';
 
 import {MatButtonModule} from '@angular/material/button';
-import { MatSnackBarModule } from '@angular/material/snack-bar'
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ConsultaCrudComponent } from './components/views/consulta-crud/consulta-crud.component';
+import { ConsultaCreateComponent } from './components/consulta/consulta-create/consulta-create.component';
+import { ConsultaReadComponent } from './components/consulta/consulta-read/consulta-read.component';
+import { ConsultaUpdateComponent } from './components/consulta/consulta-update/consulta-update.component';
+import { ConsultaDeleteComponent } from './components/consulta/consulta-delete/consulta-delete.component'
 
 @NgModule({
   declarations: [
@@ -53,7 +58,12 @@ import { MatSnackBarModule } from '@angular/material/snack-bar'
     BrandUpdateComponent,
     BrandReadComponent,
     BrandDeleteComponent,
-    CarCrudComponent
+    CarCrudComponent,
+    ConsultaCrudComponent,
+    ConsultaCreateComponent,
+    ConsultaReadComponent,
+    ConsultaUpdateComponent,
+    ConsultaDeleteComponent
   ],
   imports: [
     BrowserModule,

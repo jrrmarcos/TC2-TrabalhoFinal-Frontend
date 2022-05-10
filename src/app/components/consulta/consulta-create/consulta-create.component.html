@@ -1,0 +1,35 @@
+<mat-card>
+    <mat-card-title>Novo Cadastro de Consulta</mat-card-title>
+    <form [formGroup]="consultaForm">
+        
+        <mat-form-field>
+            <select class="form-control" formControlName="consultaForm" name="idPaciente" id="idPaciente">
+                <option *ngFor="" value="" id=""></option>
+            </select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <select class="form-control" formControlName="consultaForm" name="idMedico" id="idMedico">
+                <option *ngFor="" value="" id=""></option>
+            </select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput type="date">
+        </mat-form-field>
+
+        
+        <mat-form-field>
+            <input matInput type="time">
+        </mat-form-field>
+
+    </form>
+</mat-card>
+
+<button mat-raised-button (click)="createConsulta()" color="primary">
+    Salvar
+</button>
+
+<button mat-raised-button (click)="cancelar()" color="primary">
+    Cancelar
+</button>

@@ -12,6 +12,11 @@ import { HomeComponent } from './components/views/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { CarCrudComponent } from './components/views/car-crud/car-crud.component';
 import { BrandCrudComponent } from './components/views/brand-crud/brand-crud.component';
+import { ConsultaCreateComponent } from './components/consulta/consulta-create/consulta-create.component';
+import { ConsultaReadComponent } from './components/consulta/consulta-read/consulta-read.component';
+import { ConsultaCrudComponent } from './components/views/consulta-crud/consulta-crud.component';
+import { ConsultaUpdateComponent } from './components/consulta/consulta-update/consulta-update.component';
+import { ConsultaDeleteComponent } from './components/consulta/consulta-delete/consulta-delete.component';
 
 const routes: Routes = [
   {
@@ -53,6 +58,22 @@ const routes: Routes = [
   {
     path: "marcas/delete/:id",
     component: BrandDeleteComponent
+  },
+  {
+    path: "consultas",
+    component: ConsultaCrudComponent
+  },
+  {
+    path: "consultas/create",
+    component: ConsultaCreateComponent
+  },
+  {
+    path: "consultas/update/:id",
+    component: ConsultaUpdateComponent
+  },
+  {
+    path: "consultas/delete/:id",
+    component: ConsultaDeleteComponent
   },
   {
     path: "**",
