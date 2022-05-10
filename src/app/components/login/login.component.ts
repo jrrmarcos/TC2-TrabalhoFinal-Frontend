@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Admin } from 'src/app/model/admin.model';
+import { AdministradoresService } from 'src/app/services/administradores.service';
 import { UserService } from 'src/app/services/user.service';
 import { User } from '../../model/user.model';
 
@@ -11,23 +13,22 @@ import { User } from '../../model/user.model';
 })
 export class LoginComponent implements OnInit {
 
-  user: User
+  admin: Admin
   exibirCadastrar: boolean = true;
 
   loginForm = new FormGroup({
-    username: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
+    login: new FormControl('', Validators.required),
+    senha: new FormControl('', Validators.required),
   });
   
   registerForm = new FormGroup({
-    username: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
-    passwordconfirm: new FormControl('', Validators.required)
+    login: new FormControl('', Validators.required),
+    senha: new FormControl('', Validators.required),
+    senhaconfirm: new FormControl('', Validators.required)
   });
 
   constructor(private router: Router,
-              private serviceUser: UserService) { }
+              private serviceAdmin: AdministradoresService) { }
 
   ngOnInit(): void {
   }
@@ -42,50 +43,48 @@ export class LoginComponent implements OnInit {
 
   onSubmitLogin() {
     if (this.loginForm.valid) {
-      this.user = this.loginForm.value
-      this.user.password = this.user.password
-      this.serviceUser.loginUser(this.user).subscribe(res => {
-        if (res.ok) {
-          res.body.data = res.body.data.map(function (e) {
-            return { "_id": e.id, "username": e.username, "email": e.email }
-          });
-          sessionStorage.setItem('user', JSON.stringify(res.body.data[0]))
-          this.serviceUser.showMessage('Login realizado com sucesso!')
-          this.user = null;
-          this.router.navigate(['/home']);
+      let login = this.loginForm.get('login').value
+      let senha = this.loginForm.get('senha').value
+      this.admin = {login: login, senha: senha}
+      this.serviceAdmin.loginAdmin(this.admin).subscribe(res => {
+        if (res.status === 200) {
+          if(res.body.token != null){
+            sessionStorage.setItem('token', JSON.stringify(res.body.token))
+            this.serviceAdmin.showMessage('Login realizado com sucesso!')
+            this.router.navigate(['/home']);
+          }else{
+            this.serviceAdmin.showMessage('Login ou senha inválidos', true)
+            this.router.navigate(['/login']);
+          }
         } else {
-          this.serviceUser.showMessage('Não foi possível efetuar o login', true)
+          this.serviceAdmin.showMessage('Não foi possível efetuar o login', true)
         }
       })
     } else {
-      this.serviceUser.showMessage('Dados ausentes! - Preencha todos os campos', true)
+      this.serviceAdmin.showMessage('Dados ausentes! - Preencha todos os campos', true)
     }
   }
 
   onSubmitRegister() {
     if (this.registerForm.valid) {
-      if (this.registerForm.value.password == this.registerForm.value.passwordconfirm) {
-        //Seta usuário
-        this.user = this.registerForm.value;
-        this.user.password = this.user.password;
-        this.serviceUser.addUser(this.user).subscribe(res => {
-          if (res.ok) {
-            res.body.data = res.body.data.map(function (e) {
-              return { "_id": e.id, "username": e.username, "email": e.email }
-            });
-            //sessionStorage.setItem('user', JSON.stringify(res.body.data[0]))
-            this.serviceUser.showMessage('Registro realizado com sucesso!')
-            //this.user = null;
+      if (this.registerForm.value.senha == this.registerForm.value.senhaconfirm) {
+        {/* setar user */}
+        let login = this.registerForm.get('login').value
+        let senha = this.registerForm.get('senha').value
+        this.admin = {login: login, senha: senha}
+        this.serviceAdmin.addAdmin(this.admin).subscribe(res => {
+          if (res.status !== 'Erro') {
+            this.serviceAdmin.showMessage('Registro realizado com sucesso!')
             this.fecharCadastrar()
           } else {
-            this.serviceUser.showMessage('Não foi possível efetuar o Registro', true)
+            this.serviceAdmin.showMessage(res.msg, true)
           }
         });
       } else {
-        this.serviceUser.showMessage('As duas senhas não conferem!', true)
+        this.serviceAdmin.showMessage('As duas senhas não conferem!', true)
       }
     } else {
-      this.serviceUser.showMessage('Dados ausentes! - Preencha todos os campos', true)
+      this.serviceAdmin.showMessage('Dados ausentes! - Preencha todos os campos', true)
     }
   }
 

@@ -9,7 +9,7 @@ export class AppComponent {
   title = 'TC2-TrabalhoFinal-Frontend';
 
   auth(){
-    if(sessionStorage.getItem('user') != null){
+    if(sessionStorage.getItem('token') != null){
       return false
     } else {
       return true

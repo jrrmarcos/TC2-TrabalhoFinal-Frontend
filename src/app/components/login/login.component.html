@@ -5,11 +5,11 @@
             <form class="form has-text-centered" [formGroup]="loginForm">
 
                 <mat-form-field>
-                    <input matInput placeholder="Nome" formControlName="username">
+                    <input matInput placeholder="Nome" formControlName="login">
                 </mat-form-field>
 
                 <mat-form-field>
-                    <input matInput placeholder="Senha" formControlName="password" type="password">
+                    <input matInput placeholder="Senha" formControlName="senha" type="password">
                 </mat-form-field>
 
             </form>
@@ -36,19 +36,15 @@
             <form [formGroup]="registerForm">
 
                 <mat-form-field>
-                    <input matInput placeholder="Nome de Usuário" formControlName="username">
+                    <input matInput placeholder="Nome de Usuário" formControlName="login">
                 </mat-form-field>
 
                 <mat-form-field>
-                    <input matInput placeholder="E-mail" formControlName="email" type="email">
+                    <input matInput placeholder="Senha" formControlName="senha" type="password">
                 </mat-form-field>
 
                 <mat-form-field>
-                    <input matInput placeholder="Senha" formControlName="password" type="password">
-                </mat-form-field>
-
-                <mat-form-field>
-                    <input matInput placeholder="Confirme a Senha" formControlName="passwordconfirm" type="password">
+                    <input matInput placeholder="Confirme a Senha" formControlName="senhaconfirm" type="password">
                 </mat-form-field>
 
             </form>

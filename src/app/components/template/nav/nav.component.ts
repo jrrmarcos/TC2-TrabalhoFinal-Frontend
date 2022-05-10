@@ -16,7 +16,7 @@ export class NavComponent implements OnInit {
   }
   
   deslogar() {
-    sessionStorage.removeItem('user');
+    sessionStorage.removeItem('token');
     this.serviceUser.showMessage('Até a próxima!')
     this.router.navigate(['/login']);
   }
