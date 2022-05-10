@@ -14,7 +14,7 @@ export class BrandCrudComponent implements OnInit {
   }
 
   navigateToBrandCreate(){
-    this.router.navigate(['/brand/create'])
+    this.router.navigate(['/marcas/create'])
   }
 
 }

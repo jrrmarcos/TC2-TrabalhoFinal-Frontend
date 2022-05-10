@@ -13,7 +13,7 @@
             <input matInput placeholder="Ano" [(ngModel)]="car.year" name="year">
         </mat-form-field>
 
-        <mat-form-field>]
+        <mat-form-field>
             <select class="form-control" formControlName="brandForm" name="brand" id="brand">
                 <option *ngFor="let b of brand" value="{{b._id}}" id="{{b._id}}">{{b.name}}</option>
             </select>

@@ -14,6 +14,6 @@ export class CarCrudComponent implements OnInit {
   }
 
   navigateToCarCreate(){
-    this.router.navigate(['/car/create'])
+    this.router.navigate(['/veiculos/create'])
   }
 }
