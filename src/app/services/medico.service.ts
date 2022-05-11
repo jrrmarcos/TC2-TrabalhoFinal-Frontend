@@ -57,8 +57,8 @@ export class MedicoService {
     })
   }
 
-  deleteMedico(id: string) {
-    return this.http.delete(this.baseURL + `/${id}`, this.getOptions()).pipe(
+  deleteMedico(medico: Medico): Observable<any>  {
+    return this.http.delete(this.baseURL + `?id=${medico.id}`, this.getOptions()).pipe(
       map(obj => obj),
       catchError(e => this.tratamentodeErros(e))
     )

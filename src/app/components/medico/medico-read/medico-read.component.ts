@@ -18,7 +18,6 @@ export class MedicoReadComponent implements OnInit {
 
   ngOnInit(): void {
     this.serviceMedico.getAllMedicos().subscribe(medicos => {
-      console.log(JSON.stringify(medicos));
       this.medicos = medicos.map(function (e){
         return{ "id": e.id, "nome": e.nome, "data": e.dataCadastro, "idEspecialidade": e.idEspecialidade}
       })

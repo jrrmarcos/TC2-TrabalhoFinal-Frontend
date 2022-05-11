@@ -26,7 +26,6 @@ export class MedicoCreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.serviceMedico.getEspecialidades().subscribe(especialidades => {
-      console.log(JSON.stringify(especialidades));
       this.especialidades = especialidades.map(function (e){
         return{ "id": e.id, "nome": e.nome}
       })
