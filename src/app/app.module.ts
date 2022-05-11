@@ -14,25 +14,15 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { HomeComponent } from './components/views/home/home.component';
-import { BrandCrudComponent } from './components/views/brand-crud/brand-crud.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { CarReadComponent } from './components/car/car-read/car-read.component';
 import { LoginComponent } from './components/login/login.component';
-import { CarCreateComponent } from './components/car/car-create/car-create.component';
-import { CarUpdateComponent } from './components/car/car-update/car-update.component';
-import { CarDeleteComponent } from './components/car/car-delete/car-delete.component';
 import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
-import { BrandCreateComponent } from './components/brand/brand-create/brand-create.component';
-import { BrandUpdateComponent } from './components/brand/brand-update/brand-update.component';
-import { BrandReadComponent } from './components/brand/brand-read/brand-read.component';
-import { BrandDeleteComponent } from './components/brand/brand-delete/brand-delete.component';
 
 import { RouterModule } from '@angular/router';
-import { CarCrudComponent } from './components/views/car-crud/car-crud.component';
 
 import {MatButtonModule} from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -40,7 +30,17 @@ import { ConsultaCrudComponent } from './components/views/consulta-crud/consulta
 import { ConsultaCreateComponent } from './components/consulta/consulta-create/consulta-create.component';
 import { ConsultaReadComponent } from './components/consulta/consulta-read/consulta-read.component';
 import { ConsultaUpdateComponent } from './components/consulta/consulta-update/consulta-update.component';
-import { ConsultaDeleteComponent } from './components/consulta/consulta-delete/consulta-delete.component'
+import { ConsultaDeleteComponent } from './components/consulta/consulta-delete/consulta-delete.component';
+import { MedicoCrudComponent } from './components/views/medico-crud/medico-crud.component';
+import { MedicoCreateComponent } from './components/medico/medico-create/medico-create.component';
+import { MedicoUpdateComponent } from './components/medico/medico-update/medico-update.component';
+import { MedicoReadComponent } from './components/medico/medico-read/medico-read.component';
+import { MedicoDeleteComponent } from './components/medico/medico-delete/medico-delete.component';
+import { PacienteCreateComponent } from './components/paciente/paciente-create/paciente-create.component';
+import { PacienteUpdateComponent } from './components/paciente/paciente-update/paciente-update.component';
+import { PacienteReadComponent } from './components/paciente/paciente-read/paciente-read.component';
+import { PacienteDeleteComponent } from './components/paciente/paciente-delete/paciente-delete.component';
+import { PacienteCrudComponent } from './components/views/paciente-crud/paciente-crud.component'
 
 @NgModule({
   declarations: [
@@ -49,22 +49,22 @@ import { ConsultaDeleteComponent } from './components/consulta/consulta-delete/c
     FooterComponent,
     NavComponent,
     HomeComponent,
-    BrandCrudComponent,
-    CarReadComponent,
     LoginComponent,
-    CarCreateComponent,
-    CarUpdateComponent,
-    CarDeleteComponent,
-    BrandCreateComponent,
-    BrandUpdateComponent,
-    BrandReadComponent,
-    BrandDeleteComponent,
-    CarCrudComponent,
     ConsultaCrudComponent,
     ConsultaCreateComponent,
     ConsultaReadComponent,
     ConsultaUpdateComponent,
-    ConsultaDeleteComponent
+    ConsultaDeleteComponent,
+    MedicoCrudComponent,
+    MedicoCreateComponent,
+    MedicoUpdateComponent,
+    MedicoReadComponent,
+    MedicoDeleteComponent,
+    PacienteCreateComponent,
+    PacienteUpdateComponent,
+    PacienteReadComponent,
+    PacienteDeleteComponent,
+    PacienteCrudComponent
   ],
   imports: [
     BrowserModule,

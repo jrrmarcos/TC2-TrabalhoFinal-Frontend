@@ -1,6 +1,6 @@
 export interface Medico {
-    id?: number,
-    nome?: string,
-    data?: Date,
-    idEspecialidade?: number
+    id: number,
+    nome: string,
+    data: Date,
+    idEspecialidade: number
 }

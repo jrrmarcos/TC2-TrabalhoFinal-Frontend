@@ -1,22 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BrandCreateComponent } from './components/brand/brand-create/brand-create.component';
-import { BrandDeleteComponent } from './components/brand/brand-delete/brand-delete.component';
-import { BrandReadComponent } from './components/brand/brand-read/brand-read.component';
-import { BrandUpdateComponent } from './components/brand/brand-update/brand-update.component';
-import { CarCreateComponent } from './components/car/car-create/car-create.component';
-import { CarDeleteComponent } from './components/car/car-delete/car-delete.component';
-import { CarReadComponent } from './components/car/car-read/car-read.component';
-import { CarUpdateComponent } from './components/car/car-update/car-update.component';
 import { HomeComponent } from './components/views/home/home.component';
 import { LoginComponent } from './components/login/login.component';
-import { CarCrudComponent } from './components/views/car-crud/car-crud.component';
-import { BrandCrudComponent } from './components/views/brand-crud/brand-crud.component';
 import { ConsultaCreateComponent } from './components/consulta/consulta-create/consulta-create.component';
-import { ConsultaReadComponent } from './components/consulta/consulta-read/consulta-read.component';
 import { ConsultaCrudComponent } from './components/views/consulta-crud/consulta-crud.component';
 import { ConsultaUpdateComponent } from './components/consulta/consulta-update/consulta-update.component';
 import { ConsultaDeleteComponent } from './components/consulta/consulta-delete/consulta-delete.component';
+import { MedicoCrudComponent } from './components/views/medico-crud/medico-crud.component';
+import { MedicoCreateComponent } from './components/medico/medico-create/medico-create.component';
+import { MedicoUpdateComponent } from './components/medico/medico-update/medico-update.component';
+import { MedicoDeleteComponent } from './components/medico/medico-delete/medico-delete.component';
+import { PacienteCrudComponent } from './components/views/paciente-crud/paciente-crud.component';
+import { PacienteCreateComponent } from './components/paciente/paciente-create/paciente-create.component';
+import { PacienteUpdateComponent } from './components/paciente/paciente-update/paciente-update.component';
+import { PacienteDeleteComponent } from './components/paciente/paciente-delete/paciente-delete.component';
 
 const routes: Routes = [
   {
@@ -28,36 +25,36 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: "veiculos",
-    component: CarCrudComponent
+    path: "medicos",
+    component: MedicoCrudComponent
   },
   {
-    path: "veiculos/create",
-    component: CarCreateComponent
+    path: "medicos/create",
+    component: MedicoCreateComponent
   },
   {
-    path: "veiculos/update/:id",
-    component: CarUpdateComponent
+    path: "medicos/update/:id",
+    component: MedicoUpdateComponent
   },
   {
-    path: "veiculos/delete/:id",
-    component: CarDeleteComponent
+    path: "medicos/delete/:id",
+    component: MedicoDeleteComponent
   },
   {
-    path: "marcas",
-    component: BrandCrudComponent
+    path: "pacientes",
+    component: PacienteCrudComponent
   },
   {
-    path: "marcas/create",
-    component: BrandCreateComponent
+    path: "pacientes/create",
+    component: PacienteCreateComponent
   },
   {
-    path: "marcas/update/:id",
-    component: BrandUpdateComponent
+    path: "pacientes/update/:id",
+    component: PacienteUpdateComponent
   },
   {
-    path: "marcas/delete/:id",
-    component: BrandDeleteComponent
+    path: "pacientes/delete/:id",
+    component: PacienteDeleteComponent
   },
   {
     path: "consultas",

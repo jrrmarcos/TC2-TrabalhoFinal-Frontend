@@ -3,8 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Admin } from 'src/app/model/admin.model';
 import { AdministradoresService } from 'src/app/services/administradores.service';
-import { UserService } from 'src/app/services/user.service';
-import { User } from '../../model/user.model';
 
 @Component({
   selector: 'app-login',
