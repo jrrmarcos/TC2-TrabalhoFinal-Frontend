@@ -48,7 +48,7 @@ export class MedicoService {
     )
   }
 
-  readById(id: string){
+  readById(id: string) {
     let medicos: Medico[]
     this.getAllMedicos().subscribe(medicos => {
       medicos = medicos.map(function (e) {
@@ -57,7 +57,7 @@ export class MedicoService {
     })
   }
 
-  deleteMedico(medico: Medico): Observable<any>  {
+  deleteMedico(medico: Medico): Observable<any> {
     return this.http.delete(this.baseURL + `?id=${medico.id}`, this.getOptions()).pipe(
       map(obj => obj),
       catchError(e => this.tratamentodeErros(e))
@@ -71,6 +71,19 @@ export class MedicoService {
     body = body.set('idEspecialidade', medico.idEspecialidade)
 
     return this.http.post(this.baseURL, body, this.getOptions()).pipe(
+      map(obj => obj),
+      catchError(e => this.tratamentodeErros(e))
+    )
+  }
+
+  updateMedico(medico: Medico): Observable<any> {
+    //body da request
+    let body = new HttpParams();
+    body = body.set('id', medico.id)
+    body = body.set('nome', medico.nome)
+    body = body.set('idEspecialidade', medico.idEspecialidade)
+
+    return this.http.put(this.baseURL, body, this.getOptions()).pipe(
       map(obj => obj),
       catchError(e => this.tratamentodeErros(e))
     )

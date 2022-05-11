@@ -14,6 +14,6 @@ export class MedicoCrudComponent implements OnInit {
   }
 
   navigateToMedicoCreate(){
-    this.router.navigate(['/veiculos/create'])
+    this.router.navigate(['/medicos/create'])
   }
 }

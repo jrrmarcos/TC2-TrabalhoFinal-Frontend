@@ -1,1 +1,22 @@
-<p>medico-update works!</p>
+<mat-card>
+    <mat-card-title>Atualização de Registro do Médico</mat-card-title>
+    <form [formGroup]="medicoForm">
+        <mat-form-field>
+            <input matInput placeholder="Nome" type="text" name="nome" formControlName="nome" />
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-select matSelect placeholder="Especialidade" formControlName="idEspecialidade" name="idEspecialidade">
+                <mat-option *ngFor="let b of especialidades" value="{{b.id}}" id="{{b.id}}">{{b.nome}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+</mat-card>
+
+<button mat-raised-button (click)="updateMedico()" color="primary">
+    Salvar
+</button>
+
+<button mat-raised-button (click)="cancelar()" color="primary">
+    Cancelar
+</button>

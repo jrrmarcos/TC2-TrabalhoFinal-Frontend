@@ -40,5 +40,4 @@ export class MedicoDeleteComponent implements OnInit {
     this.serviceMedico.showMessage('Operação cancelada!')
     this.router.navigate(['/medicos'])
   }
-
 }

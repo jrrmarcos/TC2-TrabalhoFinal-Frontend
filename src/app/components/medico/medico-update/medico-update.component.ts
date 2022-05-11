@@ -13,49 +13,50 @@ import { MedicoService } from 'src/app/services/medico.service';
 })
 export class MedicoUpdateComponent implements OnInit {
 
-  medico: Medico[]
-  especialidades: Especialidade
-  admin: Admin
+  especialidades : Especialidade[];
+  medico : Medico;
+  especialidade: Especialidade
 
   medicoForm = new FormGroup({
-    name: new FormControl('', Validators.required),
-    color: new FormControl('', Validators.required),
-    year: new FormControl('', Validators.required),
-    brand: new FormControl('', Validators.required)
+    nome: new FormControl('', Validators.required),
+    idEspecialidade: new FormControl('', Validators.required),
   });
 
   constructor(private router: Router,
-    private route: ActivatedRoute,
-    private medicoService: MedicoService) { }
+              private serviceMedico: MedicoService,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id')
-    this.medicoService.readById(id)
-  }
-
-  getUser(): Admin {
-    return this.admin = JSON.parse(localStorage.getItem('admin') || '{}')
-  }
-
-  updateCar() {
-    if (this.medicoForm.valid) {
-    /* LÓGICA A SER REFORMULADA PARA MÉDICOS
-    this.medicoService.addMedico().subscribe(res => {
-      if(res.ok){
-        this.medicoService.showMessage('Veículo alterado!')
-        this.router.navigate(['/veiculos']);
-      } else{
-        this.medicoService.showMessage('Não foi possível efetuar a atualização do veículo',true)
-      }
+    this.serviceMedico.getAllMedicos().subscribe(medicos => {
+      this.medico  = medicos.filter(obj => String(obj.id) === id)[0]
+    })    
+    this.serviceMedico.getEspecialidades().subscribe(especialidades => {
+      this.especialidades = especialidades.map(function (e){
+        return{ "id": e.id, "nome": e.nome}
+      })
     })
-  } else{
-    this.medicoService.showMessage('Dados ausentes! - Preencha todos os campos',true)
-*/
   }
-}
+
+  updateMedico(){
+    if(this.medicoForm.valid){
+      this.medico.nome = this.medicoForm.get('nome').value;
+      this.medico.idEspecialidade = this.medicoForm.get('idEspecialidade').value;
+      this.serviceMedico.updateMedico(this.medico).subscribe(res => {
+        if(res.status !== "Erro"){
+          this.serviceMedico.showMessage('Registro atualizado!')
+          this.router.navigate(['/medicos']);
+        } else{
+          this.serviceMedico.showMessage('Não foi possível atualizar o registro do médico',true)
+        }
+      })
+    } else{
+      this.serviceMedico.showMessage('Dados ausentes! - Preencha todos os campos',true)
+    }
+  }
 
   cancelar() {
-    this.medicoService.showMessage('Operação cancelada!')
+    this.serviceMedico.showMessage('Operação cancelada!')
     this.router.navigate(['/medicos'])
   }
 

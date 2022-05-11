@@ -1,12 +1,12 @@
 <mat-card>
-    <mat-card-title>Novo Cadastro de Veículo</mat-card-title>
+    <mat-card-title>Cadastro de Novo Médico</mat-card-title>
     <form [formGroup]="medicoForm">
         <mat-form-field>
-            <input matInput type="text" name="nome" formControlName="nome" />
+            <input matInput placeholder="Nome" type="text" name="nome" formControlName="nome" />
         </mat-form-field>
 
         <mat-form-field>
-            <mat-select matSelect formControlName="idEspecialidade" name="idEspecialidade">
+            <mat-select matSelect placeholder="Especialidade" formControlName="idEspecialidade" name="idEspecialidade">
                 <mat-option *ngFor="let b of especialidades" value="{{b.id}}" id="{{b.id}}">{{b.nome}}</mat-option>
             </mat-select>
         </mat-form-field>
