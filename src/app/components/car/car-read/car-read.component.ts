@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Car } from 'src/app/model/car.model';
+import { Medico } from 'src/app/model/medico.model';
 import { User } from 'src/app/model/user.model';
-import { CarService } from 'src/app/services/car.service';
+import { MedicoService } from 'src/app/services/medico.service';
 
 @Component({
   selector: 'app-car-read',
@@ -11,16 +11,18 @@ import { CarService } from 'src/app/services/car.service';
 })
 export class CarReadComponent implements OnInit {
 
-  cars: Car[]
-  displayedColumns = ['name','color','year','brand','action']
+  medicos: Medico[]
+  displayedColumns = ['id','nome','data','idEspecialidade']
 
-  constructor(private serviceCar: CarService,
+  constructor(private serviceMedico: MedicoService,
               private router: Router) { }
 
   ngOnInit(): void {
-    let user: User
-    this.serviceCar.getAllCar(user._id).subscribe(cars => {
-      this.cars = cars
+    this.serviceMedico.getAllMedicos().subscribe(medicos => {
+      console.log(JSON.stringify(medicos));
+      this.medicos = medicos.map(function (e){
+        return{ "id": e.id, "nome": e.nome, "data": e.dataCadastro, "idEspecialidade": e.idEspecialidade}
+      })
     })
   }
 

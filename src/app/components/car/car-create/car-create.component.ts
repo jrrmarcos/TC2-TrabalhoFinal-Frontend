@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Brand } from 'src/app/model/brand.model';
-import { Car } from 'src/app/model/car.model';
-import { User } from 'src/app/model/user.model';
-import { BrandService } from 'src/app/services/brand.service';
-import { CarService } from 'src/app/services/car.service';
+import { Especialidade } from 'src/app/model/especialidade.model';
+import { Medico } from 'src/app/model/medico.model';
+import { MedicoService } from 'src/app/services/medico.service';
 
 @Component({
   selector: 'app-car-create',
@@ -14,48 +12,46 @@ import { CarService } from 'src/app/services/car.service';
 })
 export class CarCreateComponent implements OnInit {
 
-  
-  brand : Brand[];
-  car : Car;
-  user : User;
+  especialidades : Especialidade[];
+  medico : Medico;
 
-  carForm = new FormGroup({
-    name: new FormControl('', Validators.required),
-    color: new FormControl('', Validators.required),
-    year: new FormControl('', Validators.required),
-    brand: new FormControl('', Validators.required)
+  medicoForm = new FormGroup({
+    nome: new FormControl('', Validators.required),
+    idEspecialidade: new FormControl('', Validators.required),
   });
 
   constructor(private router: Router,
-              private serviceCar: CarService,
-              private serviceBrand: BrandService) { }
+              private serviceMedico: MedicoService) { }
 
   ngOnInit(): void {
+    this.serviceMedico.getEspecialidades().subscribe(especialidades => {
+      console.log(JSON.stringify(especialidades));
+      this.especialidades = especialidades.map(function (e){
+        return{ "id": e.id, "nome": e.nome}
+      })
+    })
   }
 
-  getUser(): User {
-    return this.user = JSON.parse(localStorage.getItem('user') || '{}')
-  }
-
-  createCar(){
-    if(this.carForm.valid){
-      this.car = this.carForm.value;
-      this.car.userid = this.getUser()._id
-      this.serviceCar.addCar(this.car).subscribe(res => {
-        if(res.ok){
-          this.serviceCar.showMessage('Veículo cadastrado!')
+  createMedico(){
+    if(this.medicoForm.valid){
+      this.medico = this.medicoForm.value;
+      alert(this.medico.idEspecialidade)
+      this.serviceMedico.addMedico(this.medico).subscribe(res => {
+        alert(JSON.stringify(res));
+        if(res.status !== "Erro"){
+          this.serviceMedico.showMessage('Médico cadastrado!')
           this.router.navigate(['/veiculos']);
         } else{
-          this.serviceCar.showMessage('Não foi possível efetuar o cadastro do veículo',true)
+          this.serviceMedico.showMessage('Não foi possível efetuar o cadastro do médico',true)
         }
       })
     } else{
-      this.serviceCar.showMessage('Dados ausentes! - Preencha todos os campos',true)
+      this.serviceMedico.showMessage('Dados ausentes! - Preencha todos os campos',true)
     }
   }
 
   cancelar() {
-    this.serviceCar.showMessage('Operação cancelada!')
+    this.serviceMedico.showMessage('Operação cancelada!')
     this.router.navigate(['/veiculos'])
   }
 

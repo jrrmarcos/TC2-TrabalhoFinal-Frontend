@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
       this.serviceAdmin.loginAdmin(this.admin).subscribe(res => {
         if (res.status === 200) {
           if(res.body.token != null){
-            sessionStorage.setItem('token', JSON.stringify(res.body.token))
+            sessionStorage.setItem('token',res.body.token)
             this.serviceAdmin.showMessage('Login realizado com sucesso!')
             this.router.navigate(['/home']);
           }else{
