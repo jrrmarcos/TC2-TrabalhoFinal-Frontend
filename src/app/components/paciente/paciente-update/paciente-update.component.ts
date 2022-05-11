@@ -17,7 +17,7 @@ export class PacienteUpdateComponent implements OnInit {
 
   pacienteForm = new FormGroup({
     nome: new FormControl('', Validators.required),
-    dtnasc: new FormControl('', Validators.required)
+    dataNascimento: new FormControl('', Validators.required)
   })
 
   constructor(private router: Router,
@@ -26,34 +26,30 @@ export class PacienteUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id')
-    //this.servicePaciente.getById(id).subscribe(brand => {
-      //this.paciente = paciente
-    //})
+    this.servicePaciente.getAllPacientes().subscribe(pacientes => {
+      this.paciente  = pacientes.filter(obj => String(obj.id) === id)[0]
+    })
   }
 
-  getUser(): Admin {
-    return this.admin = JSON.parse(localStorage.getItem('admin') || '{}')
-  }
-
-  updateBrand(){
+  updatePaciente(){
     if(this.pacienteForm.valid){
-      /*LÓGICA A SER REFORMULADA
-      this.servicePaciente.addBrand(this.paciente).subscribe(res => {
-        if(res.ok){
-          this.servicePaciente.showMessage('Paciente alterado!')
+      this.paciente.nome = this.pacienteForm.get('nome').value;
+      this.paciente.dataNascimento = this.pacienteForm.get('dataNascimento').value;
+      this.servicePaciente.updatePaciente(this.paciente).subscribe(res => {
+        if(res.status !== "Erro"){
+          this.servicePaciente.showMessage('Registro atualizado!')
           this.router.navigate(['/pacientes']);
         } else{
-          this.servicePaciente.showMessage('Não foi possível efetuar a atualização do paciente', true)
+          this.servicePaciente.showMessage('Não foi possível atualizar o registro do paciente',true)
         }
       })
     } else{
-      this.servicePaciente.showMessage('Dados ausentes! - Preencha todos os campos', true)
-    */
+      this.servicePaciente.showMessage('Dados ausentes! - Preencha todos os campos',true)
     }
   }
 
   cancelar() {
-    //this.servicePaciente.showMessage('Operação cancelada!')
+    this.servicePaciente.showMessage('Operação cancelada!')
     this.router.navigate(['/pacientes'])
   }
 

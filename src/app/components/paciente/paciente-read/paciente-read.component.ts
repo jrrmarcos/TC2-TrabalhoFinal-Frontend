@@ -12,16 +12,16 @@ import { PacienteService } from 'src/app/services/paciente.service';
 export class PacienteReadComponent implements OnInit {
 
   paciente: Paciente[]
-  displayedColumns = ['nome', 'dtnasc', 'dtcriacao', 'action']
+  displayedColumns = ['id', 'nome', 'dataNascimento', 'dataCadastro', 'action']
 
   constructor(private servicePaciente: PacienteService,
-              private router: Router) { }
+    private router: Router) { }
 
   ngOnInit(): void {
-    let admin: Admin
-    //this.servicePaciente.getAllPaciente(admin.id).subscribe(paciente => {
-      //this.paciente = paciente
-    //})
+    this.servicePaciente.getAllPacientes().subscribe(paciente => {
+      this.paciente = paciente.map(function (e) {
+        return { "id": e.id, "nome": e.nome, "dataNascimento": e.dataNascimento, "dataCadastro": e.dataCadastro}
+      })
+    })
   }
-
 }

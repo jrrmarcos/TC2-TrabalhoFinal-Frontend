@@ -76,7 +76,7 @@ export class PacienteService {
     )
   }
 
-  updateMedico(paciente: Paciente): Observable<any> {
+  updatePaciente(paciente: Paciente): Observable<any> {
     //body da request
     let body = new HttpParams();
     body = body.set('id', paciente.id)

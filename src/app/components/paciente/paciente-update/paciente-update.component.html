@@ -1,1 +1,21 @@
-<p>paciente-update works!</p>
+<mat-card>
+    <mat-card-title>Atualização de Registro do Paciente</mat-card-title>
+    <form [formGroup]="pacienteForm">
+        <mat-form-field>
+            <input matInput placeholder="Nome" formControlName="nome" name="name">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Data de Nascimento" type="date" formControlName="dataNascimento" name="dtnasc">
+        </mat-form-field>
+    </form>
+</mat-card>
+
+<button mat-raised-button (click)="updatePaciente()" color="primary">
+    Salvar
+</button>
+
+<button mat-raised-button (click)="cancelar()" color="primary">
+    Cancelar
+</button>
+

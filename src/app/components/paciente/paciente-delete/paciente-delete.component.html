@@ -1,12 +1,12 @@
-<mat-card>
+<mat-card *ngIf="paciente">
     <mat-card-title>Remover Paciente</mat-card-title>
-    <form [formGroup]="pacienteForm">
+    <form>
         <mat-form-field>
-            <input matInput placeholder="Nome" [(ngModel)]="paciente.nome" name="name" disabled>
+            <input matInput placeholder="{{paciente.nome}}" name="name" disabled>
         </mat-form-field>
 
         <mat-form-field>
-            <input matInput placeholder="Data de Nascimento" type="date" [(ngModel)]="paciente.dataNascimento" name="dtnasc" disabled>
+            <input matInput value="{{paciente.dataNascimento}}" type="date" name="dataNascimento" disabled>
         </mat-form-field>
         
     </form>

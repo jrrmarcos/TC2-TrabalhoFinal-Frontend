@@ -13,31 +13,26 @@ export class PacienteDeleteComponent implements OnInit {
 
   paciente!: Paciente
 
-  pacienteForm = new FormGroup({
-    nome: new FormControl('', Validators.required),
-    dtnasc: new FormControl('', Validators.required)
-  })
-  
   constructor(private router: Router, 
               private route: ActivatedRoute,
               private servicePaciente: PacienteService) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id')
-    //this.servicePaciente.getById(id).subscribe(paciente => {
-    //  this.paciente = paciente
-    //})
+    this.servicePaciente.getAllPacientes().subscribe(pacientes => {
+      this.paciente  = pacientes.filter(obj => String(obj.id) === id)[0]
+    })  
   }
 
   deletePaciente(): void {
-    //this.servicePaciente.deletePaciente(`${this.paciente.id}`).subscribe(() => {
-     // this.servicePaciente.showMessage('Marca removida!')
+    this.servicePaciente.deletePaciente(this.paciente).subscribe(() => {
+      this.servicePaciente.showMessage('Paciente removido!')
       this.router.navigate(['/pacientes'])
-    //})
+    })
   }
 
   cancelar(): void {
-    //this.servicePaciente.showMessage('Operação cancelada!')
+    this.servicePaciente.showMessage('Operação cancelada!')
     this.router.navigate(['/pacientes'])
   }
 }

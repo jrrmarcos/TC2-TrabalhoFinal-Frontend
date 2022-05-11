@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Admin } from 'src/app/model/admin.model';
 import { Paciente } from 'src/app/model/paciente.model';
 import { PacienteService } from 'src/app/services/paciente.service';
 
@@ -13,11 +12,10 @@ import { PacienteService } from 'src/app/services/paciente.service';
 export class PacienteCreateComponent implements OnInit {
 
   paciente!: Paciente
-  user!: Admin
 
   pacienteForm = new FormGroup({
     nome: new FormControl('', Validators.required),
-    dtnasc: new FormControl('', Validators.required)
+    dataNascimento: new FormControl('', Validators.required)
   })
 
   constructor(private router: Router,
@@ -26,16 +24,11 @@ export class PacienteCreateComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getUser(): Admin {
-    return this.user = JSON.parse(localStorage.getItem('admin') || '{}')
-  }
-
   createPaciente(){
     if(this.pacienteForm.valid){
       this.paciente = this.pacienteForm.value;
-      /*LÓGICA A SER REFORMULADA
-      this.servicePaciente.addBrand(this.paciente).subscribe(res => {
-        if(res.ok){
+      this.servicePaciente.addPaciente(this.paciente).subscribe(res => {
+        if(res.status !== "Erro"){
           this.servicePaciente.showMessage('Paciente cadastrado!')
           this.router.navigate(['/pacientes']);
         } else{
@@ -44,12 +37,11 @@ export class PacienteCreateComponent implements OnInit {
       })
     } else{
       this.servicePaciente.showMessage('Dados ausentes! - Preencha todos os campos',true)
-      */
     }
   }
 
   cancelar() {
-    //this.servicePaciente.showMessage('Operação cancelada!')
+    this.servicePaciente.showMessage('Operação cancelada!')
     this.router.navigate(['/pacientes'])
   }
 
