@@ -3,8 +3,8 @@ import { EventEmitter, Injectable, Output } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { catchError, EMPTY, map, Observable } from 'rxjs';
-import { ConsultaDeleteComponent } from '../components/consulta/consulta-delete/consulta-delete.component';
 import { Medico } from '../model/medico.model';
+import { filter } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -25,11 +25,11 @@ export class MedicoService {
     })
   }
 
-  private getOptions(){
+  private getOptions() {
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': 'Bearer '+ sessionStorage.getItem("token")
+        'Authorization': 'Bearer ' + sessionStorage.getItem("token")
       })
     }
     return httpOptions;
@@ -41,8 +41,24 @@ export class MedicoService {
     return EMPTY
   }
 
-  getAllMedicos() : Observable<any> {
+  getAllMedicos(): Observable<any> {
     return this.http.get(this.baseURL, this.getOptions()).pipe(
+      map(obj => obj),
+      catchError(e => this.tratamentodeErros(e))
+    )
+  }
+
+  readById(id: string){
+    let medicos: Medico[]
+    this.getAllMedicos().subscribe(medicos => {
+      medicos = medicos.map(function (e) {
+        if (e.id.toString() === id) return e
+      })
+    })
+  }
+
+  deleteMedico(id: string) {
+    return this.http.delete(this.baseURL + `/${id}`, this.getOptions()).pipe(
       map(obj => obj),
       catchError(e => this.tratamentodeErros(e))
     )
@@ -60,7 +76,7 @@ export class MedicoService {
     )
   }
 
-  getEspecialidades() : Observable<any> {
+  getEspecialidades(): Observable<any> {
     return this.http.get("https://tiagoifsp.ddns.net/clinicaMedicaJWT/especialidades.php", this.getOptions()).pipe(
       map(obj => obj),
       catchError(e => this.tratamentodeErros(e))

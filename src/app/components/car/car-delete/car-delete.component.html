@@ -1,25 +1,21 @@
 <mat-card>
-    <mat-card-title>Alterar Dados de Veículo</mat-card-title>
-    <form [formGroup]="carForm">
-        <mat-form-field>
-            <input matInput placeholder="Nome" [(ngModel)]="car.name" name="name">
-        </mat-form-field>
-        
-        <mat-form-field>
-            <input matInput placeholder="Cor" [(ngModel)]="car.color" name="color" disabeld>
-        </mat-form-field>
-    
-        <mat-form-field>
-            <input matInput placeholder="Ano" [(ngModel)]="car.year" name="year" disabled>
-        </mat-form-field>
+        <mat-card-title>Remover Registro de Médico</mat-card-title>
+        <form>
+            <mat-form-field>
+                <input matInput placeholder="{{medico.nome}}" name="nome" disabled />
+            </mat-form-field>
 
-        <mat-form-field>]
-            <select class="form-control" formControlName="carForm" name="brand" id="brand"></select>
-        </mat-form-field>
-    </form>
+            <!--
+            <mat-form-field>
+                <mat-select matSelect formControlName="idEspecialidade" name="idEspecialidade">
+                    <mat-option *ngFor="let b of especialidades" value="{{b.id}}" id="{{b.id}}">{{b.nome}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        -->
+        </form>
 </mat-card>
 
-<button mat-raised-button (click)="deleteCar()" color="warn">
+<button mat-raised-button (click)="deleteMedico()" color="warn">
     Remover
 </button>
 

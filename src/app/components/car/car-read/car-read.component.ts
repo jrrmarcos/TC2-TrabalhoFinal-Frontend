@@ -12,7 +12,7 @@ import { MedicoService } from 'src/app/services/medico.service';
 export class CarReadComponent implements OnInit {
 
   medicos: Medico[]
-  displayedColumns = ['id','nome','data','idEspecialidade']
+  displayedColumns = ['id','nome','data','idEspecialidade','action']
 
   constructor(private serviceMedico: MedicoService,
               private router: Router) { }
