@@ -9,11 +9,16 @@ import { Consulta } from 'src/app/model/consulta.model';
 export class ConsultaReadComponent implements OnInit {
 
   consultas: Consulta[]
-  displayedColumns = ['idPaciente','idMedico','data','hora','action']
+  displayedColumns = ['id','idPaciente','idMedico','data','action']
 
-  constructor() { }
+  constructor(private serviceConsulta: ServiceConsulta) { }
 
   ngOnInit(): void {
+    this.serviceConsulta.getAllConsultas().subscribe(consultas => {
+      this.consultas = consultas.map(function (e){
+        return{ "id": e.id, "idPaciente": e.idPaciente, "idMedico": e.idMedico, "data": e.data}
+      })
+    })
   }
 
 }

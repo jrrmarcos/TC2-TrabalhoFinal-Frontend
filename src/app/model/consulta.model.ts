@@ -1,8 +1,6 @@
-import { Time } from "@angular/common";
-
 export interface Consulta {
+    id: number, 
     idPaciente: number,
     idMedico: number,
-    data: Date, 
-    hora: Time
+    data: string
 }
