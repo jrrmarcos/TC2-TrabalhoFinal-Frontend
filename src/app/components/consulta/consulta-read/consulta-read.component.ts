@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Consulta } from 'src/app/model/consulta.model';
+import { ConsultaService } from 'src/app/services/consulta.service';
 
 @Component({
   selector: 'app-consulta-read',
@@ -11,7 +12,7 @@ export class ConsultaReadComponent implements OnInit {
   consultas: Consulta[]
   displayedColumns = ['id','idPaciente','idMedico','data','action']
 
-  constructor(private serviceConsulta: ServiceConsulta) { }
+  constructor(private serviceConsulta: ConsultaService) { }
 
   ngOnInit(): void {
     this.serviceConsulta.getAllConsultas().subscribe(consultas => {

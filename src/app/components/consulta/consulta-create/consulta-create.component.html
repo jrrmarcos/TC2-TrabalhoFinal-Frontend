@@ -1,26 +1,25 @@
 <mat-card>
     <mat-card-title>Novo Cadastro de Consulta</mat-card-title>
     <form [formGroup]="consultaForm">
-        
+
         <mat-form-field>
-            <select class="form-control" formControlName="consultaForm" name="idPaciente" id="idPaciente">
-                <option *ngFor="" value="" id=""></option>
-            </select>
+            <mat-select matSelect placeholder="Pacientes" formControlName="idPaciente" name="idPaciente">
+                <mat-option *ngFor="let p of paciente" value="{{p.id}}" id="{{p.id}}">{{p.nome}}</mat-option>
+            </mat-select>
         </mat-form-field>
 
         <mat-form-field>
-            <select class="form-control" formControlName="consultaForm" name="idMedico" id="idMedico">
-                <option *ngFor="" value="" id=""></option>
-            </select>
+            <mat-select matSelect placeholder="Medicos" formControlName="idMedico" name="idMedico">
+                <mat-option *ngFor="let m of medico" value="{{m.id}}" id="{{m.id}}">{{m.nome}}</mat-option>
+            </mat-select>
         </mat-form-field>
 
         <mat-form-field>
-            <input matInput type="date">
+            <input matInput type="date" formControlName="data">
         </mat-form-field>
 
-        
         <mat-form-field>
-            <input matInput type="time">
+            <input matInput type="time" formControlName="time">
         </mat-form-field>
 
     </form>

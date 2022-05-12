@@ -1,1 +1,25 @@
-<p>consulta-delete works!</p>
+<mat-card *ngIf="consulta">
+    <mat-card-title>Remover Consulta</mat-card-title>
+    <form>
+        <mat-form-field>
+            <input matInput placeholder="{{consulta.idPaciente}}" name="idPaciente" disabled />
+        </mat-form-field>     
+        
+        <mat-form-field>
+            <input matInput placeholder="{{consulta.idMedico}}" name="idMedico" disabled />
+        </mat-form-field>  
+        
+        <mat-form-field>
+            <input matInput placeholder="{{consulta.data}}" name="data" disabled />
+        </mat-form-field>        
+    
+    </form>
+</mat-card>
+
+<button mat-raised-button (click)="deleteConsulta()" color="warn">
+Remover
+</button>
+
+<button mat-raised-button (click)="cancelar()" color="primary">
+Cancelar
+</button>
