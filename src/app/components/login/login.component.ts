@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Admin } from 'src/app/model/admin.model';
 import { AdministradoresService } from 'src/app/services/administradores.service';
+import { AutenticacaoService } from 'src/app/services/autenticacao.service';
 
 @Component({
   selector: 'app-login',
@@ -26,9 +27,14 @@ export class LoginComponent implements OnInit {
   });
 
   constructor(private router: Router,
-              private serviceAdmin: AdministradoresService) { }
+              private serviceAdmin: AdministradoresService,
+              private auth: AutenticacaoService) { }
+
 
   ngOnInit(): void {
+    if(this.auth.autenticado()){
+      this.router.navigate(['/home'])
+    } 
   }
 
   abrirCadastrar() {
@@ -48,6 +54,7 @@ export class LoginComponent implements OnInit {
         if (res.status === 200) {
           if(res.body.token != null){
             sessionStorage.setItem('token',res.body.token)
+            sessionStorage.setItem('expiry', String(this.auth.dataExpiracao()))
             this.serviceAdmin.showMessage('Login realizado com sucesso!')
             this.router.navigate(['/home']);
           }else{

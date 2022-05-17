@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Consulta } from 'src/app/model/consulta.model';
+import { AutenticacaoService } from 'src/app/services/autenticacao.service';
 import { ConsultaService } from 'src/app/services/consulta.service';
 
 @Component({
@@ -14,25 +15,32 @@ export class ConsultaDeleteComponent implements OnInit {
 
   constructor(private router: Router,
     private route: ActivatedRoute,
-    private serviceConsulta: ConsultaService) { }
+    private serviceConsulta: ConsultaService,
+    private auth: AutenticacaoService) { }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id')
-    this.serviceConsulta.getAllConsultas().subscribe(consultas => {
-      this.consulta  = consultas.filter(obj => String(obj.id) === id)[0]
-    })    
+    if (this.auth.autenticado()) {
+      const id = this.route.snapshot.paramMap.get('id')
+      this.serviceConsulta.getAllConsultas().subscribe(consultas => {
+        this.consulta = consultas.filter(obj => String(obj.id) === id)[0]
+      })
+    }
   }
 
   deleteConsulta(): void {
-    this.serviceConsulta.deleteConsulta(this.consulta).subscribe(() => {
-      this.serviceConsulta.showMessage('Consulta removida!')
-      this.router.navigate(['/consultas'])
-    })
+    if (this.auth.autenticado()) {
+      this.serviceConsulta.deleteConsulta(this.consulta).subscribe(() => {
+        this.serviceConsulta.showMessage('Consulta removida!')
+        this.router.navigate(['/consultas'])
+      })
+    }
   }
 
   cancelar(): void {
-    this.serviceConsulta.showMessage('Operação cancelada!')
-    this.router.navigate(['/consultas'])
+    if (this.auth.autenticado()) {
+      this.serviceConsulta.showMessage('Operação cancelada!')
+      this.router.navigate(['/consultas'])
+    }
   }
 
 }

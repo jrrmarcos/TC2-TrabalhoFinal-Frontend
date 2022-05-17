@@ -41,6 +41,7 @@ import { PacienteUpdateComponent } from './components/paciente/paciente-update/p
 import { PacienteReadComponent } from './components/paciente/paciente-read/paciente-read.component';
 import { PacienteDeleteComponent } from './components/paciente/paciente-delete/paciente-delete.component';
 import { PacienteCrudComponent } from './components/views/paciente-crud/paciente-crud.component'
+import { AutenticacaoGuard } from './guards/autenticacao.guard';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,7 @@ import { PacienteCrudComponent } from './components/views/paciente-crud/paciente
     MatButtonModule,
     MatSnackBarModule
   ],
-  providers: [],
+  providers: [AutenticacaoGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

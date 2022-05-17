@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Paciente } from 'src/app/model/paciente.model';
+import { AutenticacaoService } from 'src/app/services/autenticacao.service';
 import { PacienteService } from 'src/app/services/paciente.service';
 
 @Component({
@@ -13,26 +14,33 @@ export class PacienteDeleteComponent implements OnInit {
 
   paciente!: Paciente
 
-  constructor(private router: Router, 
-              private route: ActivatedRoute,
-              private servicePaciente: PacienteService) { }
+  constructor(private router: Router,
+    private route: ActivatedRoute,
+    private servicePaciente: PacienteService,
+    private auth: AutenticacaoService) { }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id')
-    this.servicePaciente.getAllPacientes().subscribe(pacientes => {
-      this.paciente  = pacientes.filter(obj => String(obj.id) === id)[0]
-    })  
+    if (this.auth.autenticado()) {
+      const id = this.route.snapshot.paramMap.get('id')
+      this.servicePaciente.getAllPacientes().subscribe(pacientes => {
+        this.paciente = pacientes.filter(obj => String(obj.id) === id)[0]
+      })
+    }
   }
 
   deletePaciente(): void {
-    this.servicePaciente.deletePaciente(this.paciente).subscribe(() => {
-      this.servicePaciente.showMessage('Paciente removido!')
-      this.router.navigate(['/pacientes'])
-    })
+    if (this.auth.autenticado()) {
+      this.servicePaciente.deletePaciente(this.paciente).subscribe(() => {
+        this.servicePaciente.showMessage('Paciente removido!')
+        this.router.navigate(['/pacientes'])
+      })
+    }
   }
 
   cancelar(): void {
-    this.servicePaciente.showMessage('Operação cancelada!')
-    this.router.navigate(['/pacientes'])
+    if (this.auth.autenticado()) {
+      this.servicePaciente.showMessage('Operação cancelada!')
+      this.router.navigate(['/pacientes'])
+    }
   }
 }

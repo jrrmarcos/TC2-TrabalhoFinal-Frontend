@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Especialidade } from 'src/app/model/especialidade.model';
 import { Medico } from 'src/app/model/medico.model';
+import { AutenticacaoService } from 'src/app/services/autenticacao.service';
 import { MedicoService } from 'src/app/services/medico.service';
 
 @Component({
@@ -17,27 +18,34 @@ export class MedicoDeleteComponent implements OnInit {
 
   constructor(private router: Router,
     private route: ActivatedRoute,
-    private serviceMedico: MedicoService) { }
+    private serviceMedico: MedicoService,
+    private auth: AutenticacaoService) { }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id')
-    this.serviceMedico.getAllMedicos().subscribe(medicos => {
-      this.medico  = medicos.filter(obj => String(obj.id) === id)[0]
-      this.serviceMedico.getEspecialidades().subscribe(especialidades => {
-        this.especialidade = especialidades.filter(obj => obj.id === this.medico.idEspecialidade)[0]
+    if (this.auth.autenticado()) {
+      const id = this.route.snapshot.paramMap.get('id')
+      this.serviceMedico.getAllMedicos().subscribe(medicos => {
+        this.medico = medicos.filter(obj => String(obj.id) === id)[0]
+        this.serviceMedico.getEspecialidades().subscribe(especialidades => {
+          this.especialidade = especialidades.filter(obj => obj.id === this.medico.idEspecialidade)[0]
+        })
       })
-    })    
+    }
   }
 
   deleteMedico(): void {
-    this.serviceMedico.deleteMedico(this.medico).subscribe(() => {
-      this.serviceMedico.showMessage('Médico removido!')
-      this.router.navigate(['/medicos'])
-    })
+    if (this.auth.autenticado()) {
+      this.serviceMedico.deleteMedico(this.medico).subscribe(() => {
+        this.serviceMedico.showMessage('Médico removido!')
+        this.router.navigate(['/medicos'])
+      })
+    }
   }
 
   cancelar(): void {
-    this.serviceMedico.showMessage('Operação cancelada!')
-    this.router.navigate(['/medicos'])
+    if (this.auth.autenticado()) {
+      this.serviceMedico.showMessage('Operação cancelada!')
+      this.router.navigate(['/medicos'])
+    }
   }
 }

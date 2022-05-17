@@ -14,6 +14,8 @@ import { PacienteCrudComponent } from './components/views/paciente-crud/paciente
 import { PacienteCreateComponent } from './components/paciente/paciente-create/paciente-create.component';
 import { PacienteUpdateComponent } from './components/paciente/paciente-update/paciente-update.component';
 import { PacienteDeleteComponent } from './components/paciente/paciente-delete/paciente-delete.component';
+import { AutenticacaoGuard } from './guards/autenticacao.guard';
+import { AppComponent } from './app.component';
 
 const routes: Routes = [
   {
@@ -22,59 +24,71 @@ const routes: Routes = [
   },
   {
     path: "home",
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate: [AutenticacaoGuard]
   },
   {
     path: "medicos",
-    component: MedicoCrudComponent
+    component: MedicoCrudComponent,
+    canActivate: [AutenticacaoGuard]
   },
   {
     path: "medicos/create",
-    component: MedicoCreateComponent
+    component: MedicoCreateComponent,
+    canActivate: [AutenticacaoGuard]
   },
   {
     path: "medicos/update/:id",
-    component: MedicoUpdateComponent
+    component: MedicoUpdateComponent,
+    canActivate: [AutenticacaoGuard]
   },
   {
     path: "medicos/delete/:id",
-    component: MedicoDeleteComponent
+    component: MedicoDeleteComponent,
+    canActivate: [AutenticacaoGuard]
   },
   {
     path: "pacientes",
-    component: PacienteCrudComponent
+    component: PacienteCrudComponent,
+    canActivate: [AutenticacaoGuard]
   },
   {
     path: "pacientes/create",
-    component: PacienteCreateComponent
+    component: PacienteCreateComponent,
+    canActivate: [AutenticacaoGuard]
   },
   {
     path: "pacientes/update/:id",
-    component: PacienteUpdateComponent
+    component: PacienteUpdateComponent,
+    canActivate: [AutenticacaoGuard]
   },
   {
     path: "pacientes/delete/:id",
-    component: PacienteDeleteComponent
+    component: PacienteDeleteComponent,
+    canActivate: [AutenticacaoGuard]
   },
   {
     path: "consultas",
-    component: ConsultaCrudComponent
+    component: ConsultaCrudComponent,
+    canActivate: [AutenticacaoGuard]
   },
   {
     path: "consultas/create",
-    component: ConsultaCreateComponent
+    component: ConsultaCreateComponent,
+    canActivate: [AutenticacaoGuard]
   },
   {
     path: "consultas/update/:id",
-    component: ConsultaUpdateComponent
+    component: ConsultaUpdateComponent,
+    canActivate: [AutenticacaoGuard]
   },
   {
     path: "consultas/delete/:id",
-    component: ConsultaDeleteComponent
+    component: ConsultaDeleteComponent,
+    canActivate: [AutenticacaoGuard]
   },
   {
-    path: "**",
-    component: LoginComponent
+    path: "**", redirectTo: "login"
   }
 ];
 

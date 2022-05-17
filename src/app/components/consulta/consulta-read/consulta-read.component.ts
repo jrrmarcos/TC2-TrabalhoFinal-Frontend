@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Consulta } from 'src/app/model/consulta.model';
+import { AutenticacaoService } from 'src/app/services/autenticacao.service';
 import { ConsultaService } from 'src/app/services/consulta.service';
 
 @Component({
@@ -10,16 +11,19 @@ import { ConsultaService } from 'src/app/services/consulta.service';
 export class ConsultaReadComponent implements OnInit {
 
   consultas: Consulta[]
-  displayedColumns = ['id','idPaciente','idMedico','data','action']
+  displayedColumns = ['id', 'idPaciente', 'idMedico', 'data', 'action']
 
-  constructor(private serviceConsulta: ConsultaService) { }
+  constructor(private serviceConsulta: ConsultaService,
+    private auth: AutenticacaoService) { }
 
   ngOnInit(): void {
-    this.serviceConsulta.getAllConsultas().subscribe(consultas => {
-      this.consultas = consultas.map(function (e){
-        return{ "id": e.id, "idPaciente": e.idPaciente, "idMedico": e.idMedico, "data": e.data}
+    if (this.auth.autenticado()) {
+      this.serviceConsulta.getAllConsultas().subscribe(consultas => {
+        this.consultas = consultas.map(function (e) {
+          return { "id": e.id, "idPaciente": e.idPaciente, "idMedico": e.idMedico, "data": e.data }
+        })
       })
-    })
+    }
   }
 
 }

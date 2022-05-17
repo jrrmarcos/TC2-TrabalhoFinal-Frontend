@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Especialidade } from 'src/app/model/especialidade.model';
 import { Medico } from 'src/app/model/medico.model';
+import { AutenticacaoService } from 'src/app/services/autenticacao.service';
 import { MedicoService } from 'src/app/services/medico.service';
 
 @Component({
@@ -12,9 +13,9 @@ import { MedicoService } from 'src/app/services/medico.service';
 })
 export class MedicoCreateComponent implements OnInit {
 
- 
-  especialidades : Especialidade[];
-  medico : Medico;
+
+  especialidades: Especialidade[];
+  medico: Medico;
 
   medicoForm = new FormGroup({
     nome: new FormControl('', Validators.required),
@@ -22,37 +23,44 @@ export class MedicoCreateComponent implements OnInit {
   });
 
   constructor(private router: Router,
-              private serviceMedico: MedicoService) { }
+    private serviceMedico: MedicoService,
+    private auth: AutenticacaoService) { }
 
   ngOnInit(): void {
-    this.serviceMedico.getEspecialidades().subscribe(especialidades => {
-      this.especialidades = especialidades.map(function (e){
-        return{ "id": e.id, "nome": e.nome}
+    if (this.auth.autenticado()) {
+      this.serviceMedico.getEspecialidades().subscribe(especialidades => {
+        this.especialidades = especialidades.map(function (e) {
+          return { "id": e.id, "nome": e.nome }
+        })
       })
-    })
+    }
   }
 
-  createMedico(){
-    if(this.medicoForm.valid){
-      this.medico = this.medicoForm.value;
-      alert(this.medico.idEspecialidade)
-      this.serviceMedico.addMedico(this.medico).subscribe(res => {
-        alert(JSON.stringify(res));
-        if(res.status !== "Erro"){
-          this.serviceMedico.showMessage('Médico cadastrado!')
-          this.router.navigate(['/medicos']);
-        } else{
-          this.serviceMedico.showMessage('Não foi possível efetuar o cadastro do médico',true)
-        }
-      })
-    } else{
-      this.serviceMedico.showMessage('Dados ausentes! - Preencha todos os campos',true)
+  createMedico() {
+    if (this.auth.autenticado()) {
+      if (this.medicoForm.valid) {
+        this.medico = this.medicoForm.value;
+        alert(this.medico.idEspecialidade)
+        this.serviceMedico.addMedico(this.medico).subscribe(res => {
+          alert(JSON.stringify(res));
+          if (res.status !== "Erro") {
+            this.serviceMedico.showMessage('Médico cadastrado!')
+            this.router.navigate(['/medicos']);
+          } else {
+            this.serviceMedico.showMessage('Não foi possível efetuar o cadastro do médico', true)
+          }
+        })
+      } else {
+        this.serviceMedico.showMessage('Dados ausentes! - Preencha todos os campos', true)
+      }
     }
   }
 
   cancelar() {
-    this.serviceMedico.showMessage('Operação cancelada!')
-    this.router.navigate(['/medicos'])
+    if (this.auth.autenticado()) {
+      this.serviceMedico.showMessage('Operação cancelada!')
+      this.router.navigate(['/medicos'])
+    }
   }
 
 }
