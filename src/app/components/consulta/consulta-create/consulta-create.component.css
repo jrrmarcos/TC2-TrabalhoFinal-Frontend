@@ -1,9 +1,19 @@
 form {
     display: flex; 
     flex-direction: column;
+    margin-left: 230px;
 }
 
-button {
+.title {
+    margin-left: 230px;
+}
+
+.btn1 {
     margin-top: 20px;
-    margin-right: 15px;
+    margin-left: 235px;
+}
+
+.btn2 {
+    margin-top: 20px;
+    margin-left: 15px;
 }

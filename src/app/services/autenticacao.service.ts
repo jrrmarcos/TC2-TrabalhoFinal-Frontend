@@ -14,21 +14,20 @@ export class AutenticacaoService {
   dataExpiracao() {
     const currentDate = Date.now()
     const minutesToAdd = 5
-    const futureDate = (currentDate + (minutesToAdd * 2000))
+    const futureDate = (currentDate + (minutesToAdd * 60000))
     return futureDate
   }
 
   autenticado() {
     if (Date.now() < Number(sessionStorage.getItem('expiry'))) {
-      console.log('Hora atual sessão: ', Date.now())
-      console.log('Hora de expiração: ', sessionStorage.getItem('expiry'))
+      //console.log('Hora atual sessão: ', Date.now())
+      //console.log('Hora de expiração: ', sessionStorage.getItem('expiry'))
       return true
     } else if (Date.now() >= Number(sessionStorage.getItem('expiry'))) {
-      console.log((sessionStorage.getItem('expiry')))
-      sessionStorage.setItem('token', null)
-      sessionStorage.setItem('expiry', null)
-      this.router.navigate(['/'])
-      this.showMessage('Sessão expirada!', true)
+      sessionStorage.clear()
+      sessionStorage.clear()
+      this.showMessage('Realize o login!', true)
+      this.router.navigate(['/login'])
       return false
     }
   }

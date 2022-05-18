@@ -1,5 +1,7 @@
+<app-header></app-header>
+<app-nav></app-nav>
 <mat-card>
-    <mat-card-title>Novo Cadastro de Consulta</mat-card-title>
+    <mat-card-title class="title">Novo Cadastro de Consulta</mat-card-title>
     <form [formGroup]="consultaForm">
 
         <mat-form-field>
@@ -25,10 +27,11 @@
     </form>
 </mat-card>
 
-<button mat-raised-button (click)="createConsulta()" color="primary">
+<button mat-raised-button class="btn1" (click)="createConsulta()" color="primary">
     Salvar
 </button>
 
-<button mat-raised-button (click)="cancelar()" color="primary">
+<button mat-raised-button class="btn2" (click)="cancelar()" color="primary">
     Cancelar
 </button>
+<app-footer></app-footer>

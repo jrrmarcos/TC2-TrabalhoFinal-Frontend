@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
 
   admin: Admin
   exibirCadastrar: boolean = true;
+  autenticado = this.auth.autenticado() == true
 
   loginForm = new FormGroup({
     login: new FormControl('', Validators.required),

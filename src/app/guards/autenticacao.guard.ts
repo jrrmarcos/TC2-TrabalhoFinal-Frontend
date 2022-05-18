@@ -16,10 +16,10 @@ export class AutenticacaoGuard implements CanActivate {
     const token = sessionStorage.getItem('token')
     const expiry = sessionStorage.getItem('expiry')
 
-    if (((token != 'null')) && (expiry !== 'null')) {
+    if (((token !== null)) && (expiry !== null)) {
       return true
     } else {
-      this.adminService.showMessage('Acesso negado!', true)
+      this.adminService.showMessage('Realize o login!', true)
       this.router.navigate(['/login'])
       return false
     } 

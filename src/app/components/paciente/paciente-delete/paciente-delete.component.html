@@ -1,5 +1,7 @@
+<app-header></app-header>
+<app-nav></app-nav>
 <mat-card *ngIf="paciente">
-    <mat-card-title>Remover Paciente</mat-card-title>
+    <mat-card-title class="title">Remover Paciente</mat-card-title>
     <form>
         <mat-form-field>
             <input matInput placeholder="{{paciente.nome}}" name="name" disabled>
@@ -12,11 +14,11 @@
     </form>
 </mat-card>
 
-<button mat-raised-button (click)="deletePaciente()" color="warn">
+<button mat-raised-button class="btn1" (click)="deletePaciente()" color="warn">
     Remover
 </button>
 
-<button mat-raised-button (click)="cancelar()" color="primary">
+<button mat-raised-button class="btn2" (click)="cancelar()" color="primary">
     Cancelar
 </button>
-
+<app-footer></app-footer>

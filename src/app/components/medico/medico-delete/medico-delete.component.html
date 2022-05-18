@@ -1,5 +1,7 @@
+<app-header></app-header>
+<app-nav></app-nav>
 <mat-card *ngIf="medico && especialidade">
-    <mat-card-title>Remover Registro de Médico</mat-card-title>
+    <mat-card-title class="title">Remover Registro de Médico</mat-card-title>
     <form>
         <mat-form-field>
             <input matInput placeholder="{{medico.nome}}" name="nome" disabled />
@@ -13,10 +15,11 @@
     </form>
 </mat-card>
 
-<button mat-raised-button (click)="deleteMedico()" color="warn">
+<button mat-raised-button class="btn1" (click)="deleteMedico()" color="warn">
 Remover
 </button>
 
-<button mat-raised-button (click)="cancelar()" color="primary">
+<button mat-raised-button class="btn2" (click)="cancelar()" color="primary">
 Cancelar
 </button>
+<app-footer></app-footer>
