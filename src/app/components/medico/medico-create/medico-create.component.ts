@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -16,24 +17,29 @@ export class MedicoCreateComponent implements OnInit {
 
   especialidades: Especialidade[];
   medico: Medico;
-
-  medicoForm = new FormGroup({
-    nome: new FormControl('', Validators.required),
-    idEspecialidade: new FormControl('', Validators.required),
-  });
+  medicoForm: FormGroup;
 
   constructor(private router: Router,
     private serviceMedico: MedicoService,
-    private auth: AutenticacaoService) { }
+    private auth: AutenticacaoService,
+    private local: Location) { }
 
   ngOnInit(): void {
     if (this.auth.autenticado()) {
+      this.initForm()
       this.serviceMedico.getEspecialidades().subscribe(especialidades => {
         this.especialidades = especialidades.map(function (e) {
           return { "id": e.id, "nome": e.nome }
         })
       })
     }
+  }
+ 
+  initForm() {
+    this.medicoForm = new FormGroup({
+      nome: new FormControl('', Validators.required),
+      idEspecialidade: new FormControl('', Validators.required),
+    });
   }
 
   createMedico() {
@@ -59,7 +65,7 @@ export class MedicoCreateComponent implements OnInit {
   cancelar() {
     if (this.auth.autenticado()) {
       this.serviceMedico.showMessage('Operação cancelada!')
-      this.router.navigate(['/medicos'])
+      this.local.back()
     }
   }
 

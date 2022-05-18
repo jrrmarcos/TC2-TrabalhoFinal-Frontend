@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -13,18 +14,24 @@ import { PacienteService } from 'src/app/services/paciente.service';
 export class PacienteCreateComponent implements OnInit {
 
   paciente!: Paciente
-
-  pacienteForm = new FormGroup({
-    nome: new FormControl('', Validators.required),
-    dataNascimento: new FormControl('', Validators.required)
-  })
+  pacienteForm: FormGroup
 
   constructor(private router: Router,
     private servicePaciente: PacienteService,
-    private auth: AutenticacaoService) { }
+    private auth: AutenticacaoService,
+    private local: Location) { }
 
   ngOnInit(): void {
-    this.auth.autenticado()
+    if(this.auth.autenticado()){
+      this.initForm()
+    }
+  }
+
+  initForm() {
+    this.pacienteForm = new FormGroup({
+      nome: new FormControl('', Validators.required),
+      dataNascimento: new FormControl('', Validators.required)
+    })
   }
 
   createPaciente() {
@@ -48,7 +55,7 @@ export class PacienteCreateComponent implements OnInit {
   cancelar() {
     if (this.auth.autenticado()) {
       this.servicePaciente.showMessage('Operação cancelada!')
-      this.router.navigate(['/pacientes'])
+      this.local.back()
     }
   }
 }

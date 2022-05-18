@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -17,7 +18,8 @@ export class PacienteDeleteComponent implements OnInit {
   constructor(private router: Router,
     private route: ActivatedRoute,
     private servicePaciente: PacienteService,
-    private auth: AutenticacaoService) { }
+    private auth: AutenticacaoService,
+    private local: Location) { }
 
   ngOnInit(): void {
     if (this.auth.autenticado()) {
@@ -40,7 +42,7 @@ export class PacienteDeleteComponent implements OnInit {
   cancelar(): void {
     if (this.auth.autenticado()) {
       this.servicePaciente.showMessage('Operação cancelada!')
-      this.router.navigate(['/pacientes'])
+      this.local.back()
     }
   }
 }

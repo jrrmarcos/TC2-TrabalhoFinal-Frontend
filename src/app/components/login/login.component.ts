@@ -15,27 +15,35 @@ export class LoginComponent implements OnInit {
   admin: Admin
   exibirCadastrar: boolean = true;
   autenticado = this.auth.autenticado() == true
-
-  loginForm = new FormGroup({
-    login: new FormControl('', Validators.required),
-    senha: new FormControl('', Validators.required),
-  });
-  
-  registerForm = new FormGroup({
-    login: new FormControl('', Validators.required),
-    senha: new FormControl('', Validators.required),
-    senhaconfirm: new FormControl('', Validators.required)
-  });
+  loginForm: FormGroup
+  registerForm: FormGroup
 
   constructor(private router: Router,
-              private serviceAdmin: AdministradoresService,
-              private auth: AutenticacaoService) { }
+    private serviceAdmin: AdministradoresService,
+    private auth: AutenticacaoService) { }
 
 
   ngOnInit(): void {
-    if(this.auth.autenticado()){
+    this.initLoginForm()
+    this.initRegisterForm()
+    if (this.auth.autenticado()) {
       this.router.navigate(['/home'])
-    } 
+    }
+  }
+
+  initLoginForm() {
+    this.loginForm = new FormGroup({
+      login: new FormControl('', Validators.required),
+      senha: new FormControl('', Validators.required),
+    });
+  }
+
+  initRegisterForm() {
+    this.registerForm = new FormGroup({
+      login: new FormControl('', Validators.required),
+      senha: new FormControl('', Validators.required),
+      senhaconfirm: new FormControl('', Validators.required)
+    });
   }
 
   abrirCadastrar() {
@@ -50,15 +58,15 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       let login = this.loginForm.get('login').value
       let senha = this.loginForm.get('senha').value
-      this.admin = {login: login, senha: senha}
+      this.admin = { login: login, senha: senha }
       this.serviceAdmin.loginAdmin(this.admin).subscribe(res => {
         if (res.status === 200) {
-          if(res.body.token != null){
-            sessionStorage.setItem('token',res.body.token)
+          if (res.body.token != null) {
+            sessionStorage.setItem('token', res.body.token)
             sessionStorage.setItem('expiry', String(this.auth.dataExpiracao()))
-            this.serviceAdmin.showMessage('Login realizado com sucesso!')
+            this.serviceAdmin.showMessage('Bem-vindo, '+`${this.admin.login}`+'!')
             this.router.navigate(['/home']);
-          }else{
+          } else {
             this.serviceAdmin.showMessage('Login ou senha inválidos', true)
             this.router.navigate(['/login']);
           }
@@ -74,10 +82,10 @@ export class LoginComponent implements OnInit {
   onSubmitRegister() {
     if (this.registerForm.valid) {
       if (this.registerForm.value.senha == this.registerForm.value.senhaconfirm) {
-        {/* setar user */}
+        {/* setar user */ }
         let login = this.registerForm.get('login').value
         let senha = this.registerForm.get('senha').value
-        this.admin = {login: login, senha: senha}
+        this.admin = { login: login, senha: senha }
         this.serviceAdmin.addAdmin(this.admin).subscribe(res => {
           if (res.status !== 'Erro') {
             this.serviceAdmin.showMessage('Registro realizado com sucesso!')

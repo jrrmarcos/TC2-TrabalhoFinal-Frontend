@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Especialidade } from 'src/app/model/especialidade.model';
@@ -19,7 +20,8 @@ export class MedicoDeleteComponent implements OnInit {
   constructor(private router: Router,
     private route: ActivatedRoute,
     private serviceMedico: MedicoService,
-    private auth: AutenticacaoService) { }
+    private auth: AutenticacaoService,
+    private local: Location) { }
 
   ngOnInit(): void {
     if (this.auth.autenticado()) {
@@ -45,7 +47,7 @@ export class MedicoDeleteComponent implements OnInit {
   cancelar(): void {
     if (this.auth.autenticado()) {
       this.serviceMedico.showMessage('Operação cancelada!')
-      this.router.navigate(['/medicos'])
+      this.local.back()
     }
   }
 }

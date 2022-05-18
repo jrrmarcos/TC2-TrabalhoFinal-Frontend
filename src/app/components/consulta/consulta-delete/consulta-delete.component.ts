@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Consulta } from 'src/app/model/consulta.model';
@@ -16,7 +17,8 @@ export class ConsultaDeleteComponent implements OnInit {
   constructor(private router: Router,
     private route: ActivatedRoute,
     private serviceConsulta: ConsultaService,
-    private auth: AutenticacaoService) { }
+    private auth: AutenticacaoService,
+    private local: Location) { }
 
   ngOnInit(): void {
     if (this.auth.autenticado()) {
@@ -39,7 +41,7 @@ export class ConsultaDeleteComponent implements OnInit {
   cancelar(): void {
     if (this.auth.autenticado()) {
       this.serviceConsulta.showMessage('Operação cancelada!')
-      this.router.navigate(['/consultas'])
+      this.local.back()
     }
   }
 

@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -19,23 +20,20 @@ export class ConsultaUpdateComponent implements OnInit {
   medico: Medico[]
   paciente: Paciente[]
   consulta: Consulta
-
-  consultaForm = new FormGroup({
-    idPaciente: new FormControl('', Validators.required),
-    idMedico: new FormControl('', Validators.required),
-    data: new FormControl('', Validators.required),
-    time: new FormControl('', Validators.required)
-  });
+  consultaForm: FormGroup
 
   constructor(private router: Router,
     private route: ActivatedRoute,
     private serviceMedico: MedicoService,
     private servicePaciente: PacienteService,
     private serviceConsulta: ConsultaService,
-    private auth: AutenticacaoService) { }
+    private auth: AutenticacaoService,
+    private local: Location) { }
 
   ngOnInit(): void {
     if (this.auth.autenticado() == true) {
+      this.initForm()
+
       const id = this.route.snapshot.paramMap.get('id')
       this.serviceConsulta.getAllConsultas().subscribe(consultas => {
         this.consulta = consultas.filter(obj => String(obj.id) === id)[0]
@@ -53,6 +51,15 @@ export class ConsultaUpdateComponent implements OnInit {
         })
       })
     }
+  }
+
+  initForm() {
+    this.consultaForm = new FormGroup({
+      idPaciente: new FormControl('', Validators.required),
+      idMedico: new FormControl('', Validators.required),
+      data: new FormControl('', Validators.required),
+      time: new FormControl('', Validators.required)
+    });
   }
 
   updateConsulta() {
@@ -79,7 +86,7 @@ export class ConsultaUpdateComponent implements OnInit {
   cancelar() {
     if (this.auth.autenticado()) {
       this.serviceConsulta.showMessage('Operação cancelada!')
-      this.router.navigate(['/consultas'])
+      this.local.back()
     }
   }
 
