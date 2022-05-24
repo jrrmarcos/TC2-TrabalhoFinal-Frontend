@@ -16,7 +16,7 @@ export class AutenticacaoGuard implements CanActivate {
     const token = sessionStorage.getItem('token')
     const expiry = sessionStorage.getItem('expiry')
 
-    if (((token !== null)) && (expiry !== null)) {
+    if (((token !== 'null')) && (expiry !== 'null')) {
       return true
     } else {
       this.adminService.showMessage('Realize o login!', true)

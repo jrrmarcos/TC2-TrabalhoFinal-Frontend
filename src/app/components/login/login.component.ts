@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
   fecharCadastrar() {
     this.exibirCadastrar = true;
   }
-
+  
   onSubmitLogin() {
     if (this.loginForm.valid) {
       let login = this.loginForm.get('login').value

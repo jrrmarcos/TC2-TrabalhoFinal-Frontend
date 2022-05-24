@@ -7,12 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'TC2-TrabalhoFinal-Frontend';
-
-  auth(){
-    if((sessionStorage.getItem('token') !== 'null') && (sessionStorage.getItem('expiry') !== 'null')) {
-      return false
-    } else {
-      return true
-    }
-  }
+  
 }
