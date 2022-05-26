@@ -14,10 +14,11 @@ export class HeaderComponent implements OnInit {
     private serviceUser: UserService,
     private auth: AutenticacaoService) { }
 
-  token = this.auth.autenticado()
+  autenticado = this.auth.autenticado()
 
   ngOnInit(): void {
   }
+
   deslogar() {
     sessionStorage.setItem('token', null)
     sessionStorage.setItem('expiry', null)

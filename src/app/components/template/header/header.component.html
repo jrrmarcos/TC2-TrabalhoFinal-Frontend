@@ -28,7 +28,7 @@
         </a>
     </span>
 
-    <span>
+    <span *ngIf="autenticado === true">
         <a (click)="deslogar()">
             <button >Deslogar</button>
         </a>
