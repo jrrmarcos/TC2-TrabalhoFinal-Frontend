@@ -1,39 +1,50 @@
 <mat-toolbar class="header">
     <span>
         <a routerLink="">
-            <img class="logo" src="assets/logo.png" alt="logo">
+            <img class="logo" src="assets/logo1.png" alt="logo">
         </a>
     </span>
-    <span>
-        <a routerLink="/home">
-            Clínica Médica
-        </a>
-    </span>
+    <div *ngIf="autenticado === true">
+        <span>
+            <a routerLink="/home">
+                <i class="material-icons">
+                    home
+                </i>    
+                Início
+            </a>
+        </span>
 
-    <span>
-        <a routerLink="/medicos">
-            Médicos
-        </a>
-    </span>
+        <span>
+            <a routerLink="/medicos">
+                <i class="material-icons">
+                    account_circle
+                </i>
+                Médicos
+            </a>
+        </span>
 
-    <span>
-        <a routerLink="/pacientes">
-            Pacientes
-        </a>
-    </span>
+        <span>
+            <a routerLink="/pacientes">
+                <i class="material-icons">
+                    people
+                </i>
+                Pacientes
+            </a>
+        </span>
 
-    <span>
-        <a routerLink="/consultas">
-            Consultas
-        </a>
-    </span>
+        <span>
+            <a routerLink="/consultas">
+                <i class="material-icons">
+                    add_circle
+                </i>
+                Consultas
+            </a>
+        </span>
 
-    <span *ngIf="autenticado === true">
-        <a (click)="deslogar()">
-            <button >Deslogar</button>
-        </a>
-    </span>
-
-    
-
+        <span>
+            <a (click)="deslogar()">
+                <button mat-raised-button class="button">Deslogar</button>
+            </a>
+        </span>
+    </div>
 </mat-toolbar>

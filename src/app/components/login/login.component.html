@@ -1,66 +1,109 @@
 <app-header></app-header>
-<div *ngIf="exibirCadastrar">
-    <div>
-        <mat-card>
-            <mat-card-title>Olá, efetue o login para utilizar o sistema</mat-card-title>
-            <form class="form has-text-centered" [formGroup]="loginForm">
-
-                <mat-form-field>
-                    <input matInput placeholder="Nome" formControlName="login">
-                </mat-form-field>
-
-                <mat-form-field>
-                    <input matInput placeholder="Senha" formControlName="senha" type="password">
-                </mat-form-field>
-
-            </form>
-        </mat-card>
+<div>
+    <div class="div-logo">
+        <a routerLink="">
+            <img class="logo" src="assets/logo.png" alt="logo">
+        </a>
     </div>
 
-    <div class="login-button">
-        <button mat-raised-button color="primary" (click)="onSubmitLogin()" type="submit">
-            Entrar
-        </button>
+    <div *ngIf="exibirCadastrar">
+        <div class="login">
+            <mat-card>
+                <mat-card-title>Efetue o login para utilizar o sistema</mat-card-title>
+                <form class="form has-text-centered" [formGroup]="loginForm">
+
+                    <input class="input" placeholder="Nome" formControlName="login">
+                    <div *ngIf="loginLoginIsValid()">
+                        <span
+                            [ngClass]="loginLoginIsValid()? 'valid-login material-icons' : 'invalid-login material-icons'">check</span>
+                    </div>
+
+                    <div *ngIf="!loginLoginIsValid()">
+                        <span
+                            [ngClass]="loginLoginIsValid()? 'valid-login material-icons' : 'invalid-login material-icons'">error</span>
+                    </div>
+
+                    <input class="input" placeholder="Senha" formControlName="senha" type="password">
+                    <div *ngIf="senhaLoginIsValid()">
+                        <span
+                            [ngClass]="senhaLoginIsValid()? 'valid-senha material-icons' : 'invalid-senha material-icons'">check</span>
+                    </div>
+
+                    <div *ngIf="!senhaLoginIsValid()">
+                        <span
+                            [ngClass]="senhaLoginIsValid()? 'valid-senha material-icons' : 'invalid-senha material-icons'">error</span>
+                    </div>
+
+                </form>
+            </mat-card>
+        </div>
+
+        <div class="login-button">
+            <button mat-raised-button color="primary" (click)="onSubmitLogin()" type="submit">
+                Entrar
+            </button>
+        </div>
+        <div class="register-button">
+            <button mat-raised-button (click)="abrirCadastrar()">
+                Registre-se
+            </button>
+        </div>
     </div>
-    <div class="register-button">
-        <button mat-raised-button (click)="abrirCadastrar()">
-            Registre-se
-        </button>
-    </div>
-</div>
 
 
-<div *ngIf="!exibirCadastrar">
-    <div>
-        <mat-card>
-            <mat-card-title>Cadastre-se</mat-card-title>
-            <form [formGroup]="registerForm">
+    <div *ngIf="!exibirCadastrar">
+        <div class="registro">
+            <mat-card>
+                <mat-card-title>Preencha os campos abaixo</mat-card-title>
+                <form [formGroup]="registerForm">
 
-                <mat-form-field>
-                    <input matInput placeholder="Nome de Usuário" formControlName="login">
-                </mat-form-field>
+                    <input class="input" placeholder="Nome de Usuário" formControlName="login">
+                    <div *ngIf="loginRegistroIsValid()">
+                        <span
+                            [ngClass]="loginRegistroIsValid()? 'valid-login-registro material-icons' : 'invalid-login-registro material-icons'">check</span>
+                    </div>
 
-                <mat-form-field>
-                    <input matInput placeholder="Senha" formControlName="senha" type="password">
-                </mat-form-field>
+                    <div *ngIf="!loginRegistroIsValid()">
+                        <span
+                            [ngClass]="loginRegistroIsValid()? 'valid-login-registro material-icons' : 'invalid-login-registro material-icons'">error</span>
+                    </div>
 
-                <mat-form-field>
-                    <input matInput placeholder="Confirme a Senha" formControlName="senhaconfirm" type="password">
-                </mat-form-field>
+                    <input class="input" placeholder="Senha" formControlName="senha">
+                    <div *ngIf="senhaRegistroIsValid()">
+                        <span
+                            [ngClass]="senhaRegistroIsValid()? 'valid-senha-registro material-icons' : 'invalid-senha-registro material-icons'">check</span>
+                    </div>
 
-            </form>
-        </mat-card>
-    </div>
+                    <div *ngIf="!senhaRegistroIsValid()">
+                        <span
+                            [ngClass]="senhaRegistroIsValid()? 'valid-senha-registro material-icons' : 'invalid-senha-registro material-icons'">error</span>
+                    </div>
 
-    <div class="login-button">
-        <button mat-raised-button color="primary" (click)="onSubmitRegister()" type="submit">
-            Salvar
-        </button>
-    </div>
-    <div class="register-button">
-        <button mat-raised-button type="submit" (click)="fecharCadastrar()">
-            Cancelar
-        </button>
+                    <input class="input" placeholder="Confirme a Senha" formControlName="senhaconfirm">
+                    <div *ngIf="confirmSenhaRegistroIsValid()">
+                        <span
+                            [ngClass]="confirmSenhaRegistroIsValid()? 'valid-senha-confirm-registro material-icons' : 'invalid-senha-confirm-registro material-icons'">check</span>
+                    </div>
+
+                    <div *ngIf="!confirmSenhaRegistroIsValid()">
+                        <span
+                            [ngClass]="confirmSenhaRegistroIsValid()? 'valid-senha-confirm-registro material-icons' : 'invalid-senha-confirm-registro material-icons'">error</span>
+                    </div>
+                </form>
+            </mat-card>
+        </div>
+
+        <div class="login-button">
+            <button mat-raised-button color="primary" (click)="onSubmitRegister()" type="submit">
+                Salvar
+            </button>
+
+        </div>
+        <div class="register-button">
+            <button mat-raised-button type="submit" (click)="fecharCadastrar()">
+                Cancelar
+            </button>
+        </div>
     </div>
 </div>
 <app-footer></app-footer>

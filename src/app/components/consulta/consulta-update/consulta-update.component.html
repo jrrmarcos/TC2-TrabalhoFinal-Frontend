@@ -4,13 +4,13 @@
     <form [formGroup]="consultaForm">
 
         <mat-form-field>
-            <mat-select matSelect placeholder="Pacientes" formControlName="idPaciente" name="idPaciente">
+            <mat-select matSelect placeholder="Paciente" formControlName="idPaciente" name="idPaciente">
                 <mat-option *ngFor="let p of paciente" value="{{p.id}}" id="{{p.id}}">{{p.nome}}</mat-option>
             </mat-select>
         </mat-form-field>
 
         <mat-form-field>
-            <mat-select matSelect placeholder="Medicos" formControlName="idMedico" name="idMedico">
+            <mat-select matSelect placeholder="Médico" formControlName="idMedico" name="idMedico">
                 <mat-option *ngFor="let m of medico" value="{{m.id}}" id="{{m.id}}">{{m.nome}}</mat-option>
             </mat-select>
         </mat-form-field>

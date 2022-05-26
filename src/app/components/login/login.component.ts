@@ -14,7 +14,6 @@ export class LoginComponent implements OnInit {
 
   admin: Admin
   exibirCadastrar: boolean = true;
-  autenticado = this.auth.autenticado() == true
   loginForm: FormGroup
   registerForm: FormGroup
 
@@ -46,14 +45,36 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  loginLoginIsValid() {
+    return this.loginForm.get('login').valid
+  }
+
+  senhaLoginIsValid() {
+    return this.loginForm.get('senha').valid
+  }
+
+  loginRegistroIsValid() {
+    return this.registerForm.get('login').valid
+  }
+
+  senhaRegistroIsValid() {
+    return this.registerForm.get('senha').valid
+  }
+
+  confirmSenhaRegistroIsValid() {
+    return this.registerForm.get('senhaconfirm').valid
+  }
+
   abrirCadastrar() {
+    this.initLoginForm()
     this.exibirCadastrar = false;
   }
 
   fecharCadastrar() {
+    this.initRegisterForm()
     this.exibirCadastrar = true;
   }
-  
+
   onSubmitLogin() {
     if (this.loginForm.valid) {
       let login = this.loginForm.get('login').value
@@ -64,7 +85,7 @@ export class LoginComponent implements OnInit {
           if (res.body.token != null) {
             sessionStorage.setItem('token', res.body.token)
             sessionStorage.setItem('expiry', String(this.auth.dataExpiracao()))
-            this.serviceAdmin.showMessage('Bem-vindo, '+`${this.admin.login}`+'!')
+            this.serviceAdmin.showMessage('Bem-vindo, ' + `${this.admin.login}` + '!')
             this.router.navigate(['/home']);
           } else {
             this.serviceAdmin.showMessage('Login ou senha inválidos', true)
@@ -75,6 +96,7 @@ export class LoginComponent implements OnInit {
         }
       })
     } else {
+      this.initLoginForm()
       this.serviceAdmin.showMessage('Dados ausentes! - Preencha todos os campos', true)
     }
   }
@@ -98,6 +120,7 @@ export class LoginComponent implements OnInit {
         this.serviceAdmin.showMessage('As duas senhas não conferem!', true)
       }
     } else {
+      this.initRegisterForm()
       this.serviceAdmin.showMessage('Dados ausentes! - Preencha todos os campos', true)
     }
   }

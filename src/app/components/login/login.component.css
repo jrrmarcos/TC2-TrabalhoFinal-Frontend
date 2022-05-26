@@ -1,3 +1,7 @@
+.login, .registro {
+    margin-top: 1%;
+}
+
 form {
     display: flex; 
     flex-direction: column;
@@ -27,3 +31,94 @@ form {
     justify-content: center;
 }
 
+.div-logo {
+    margin-top: 1%
+}
+
+.logo {
+    width: 8%;
+    margin: auto;
+    display: block;
+}
+
+.mat-card-title {
+    text-align: center;
+}
+
+.valid-login.material-icons {
+    color: green;
+    float:right;
+    margin:3px 0px 0px 0px;
+    cursor: pointer;
+}
+
+.valid-login-registro.material-icons {
+    color: green;
+    float:right;
+    margin:3px 0px 0px 0px;
+    cursor: pointer;
+}
+
+.invalid-login.material-icons {
+    color: red;
+    float:right;
+    margin:3px 0px 0px -10px;
+    cursor: pointer;
+}
+
+.invalid-login-registro.material-icons {
+    color: red;
+    float:right;
+    margin:3px 0px 0px -10px;
+    cursor: pointer;
+}
+
+.valid-senha.material-icons {
+    color: green;
+    float:right;
+    margin:3px 0px 0px 0px;
+    cursor: pointer;
+}
+
+.valid-senha-registro.material-icons {
+    color: green;
+    float:right;
+    margin:3px 0px 0px 0px;
+    cursor: pointer;
+}
+
+.valid-senha-confirm-registro.material-icons {
+    color: green;
+    float:right;
+    margin:3px 0px 0px 0px;
+    cursor: pointer;
+}
+
+.invalid-senha.material-icons {
+    color: red;
+    float:right;
+    margin:3px 0px 0px -10px;
+    cursor: pointer;
+}
+
+.invalid-senha-registro.material-icons {
+    color: red;
+    float:right;
+    margin:3px 0px 0px -10px;
+    cursor: pointer;
+}
+
+.invalid-senha-confirm-registro.material-icons {
+    color: red;
+    float:right;
+    margin:3px 0px 0px -10px;
+    cursor: pointer;
+}
+
+.input {
+    margin-top: 5px;
+    border: solid 1px;
+    border-color: grey;
+    height: 30px;
+    border-radius: 10px 10px 10px 10px;
+}

@@ -23,9 +23,10 @@ export class AutenticacaoService {
       //console.log('Hora atual sessão: ', Date.now())
       //console.log('Hora de expiração: ', sessionStorage.getItem('expiry'))
       return true
-    } else if (Date.now() >= Number(sessionStorage.getItem('expiry'))) {
+    } else {
       sessionStorage.clear()
-      sessionStorage.clear()
+      console.log('Hora atual sessão: ', Date.now())
+      console.log('Hora de expiração: ', sessionStorage.getItem('expiry'))
       this.showMessage('Realize o login!', true)
       this.router.navigate(['/login'])
       return false

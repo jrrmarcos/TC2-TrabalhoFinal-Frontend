@@ -8,7 +8,6 @@ import { HeaderComponent } from './components/template/header/header.component';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FooterComponent } from './components/template/footer/footer.component';
-import { NavComponent } from './components/template/nav/nav.component';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -44,14 +43,12 @@ import { PacienteUpdateComponent } from './components/paciente/paciente-update/p
 import { PacienteReadComponent } from './components/paciente/paciente-read/paciente-read.component';
 import { PacienteDeleteComponent } from './components/paciente/paciente-delete/paciente-delete.component';
 import { PacienteCrudComponent } from './components/views/paciente-crud/paciente-crud.component'
-import { AutenticacaoGuard } from './guards/autenticacao.guard';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    NavComponent,
     HomeComponent,
     LoginComponent,
     ConsultaCrudComponent,
@@ -92,7 +89,7 @@ import { AutenticacaoGuard } from './guards/autenticacao.guard';
     MatGridListModule,
     MatMenuModule
   ],
-  providers: [AutenticacaoGuard],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

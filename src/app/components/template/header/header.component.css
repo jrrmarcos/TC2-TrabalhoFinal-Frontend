@@ -4,6 +4,11 @@
     
 }
 
+i {
+    padding-right: 1px;
+    transform: translate(0%, 15%)
+}
+
 .header a {
     align-items: center;
     text-decoration: none;
@@ -13,9 +18,18 @@
 }
 
 .header .logo {
-    max-height: 32px;
+    max-height: 45px;
 }
 
 .header  {
     padding-left: 25px;
+}
+
+
+.button { 
+    position: absolute;
+    top: 13px;
+    right: 10px;	
+    background-color: #D01D1D;
+    color: white;    
 }

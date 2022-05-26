@@ -14,14 +14,18 @@ export class HeaderComponent implements OnInit {
     private serviceUser: UserService,
     private auth: AutenticacaoService) { }
 
+
   autenticado = this.auth.autenticado()
 
   ngOnInit(): void {
   }
 
+  isAutenticado() { 
+    return this.auth.autenticado() === true
+  }
+
   deslogar() {
-    sessionStorage.setItem('token', null)
-    sessionStorage.setItem('expiry', null)
+    sessionStorage.clear()
     this.serviceUser.showMessage('Até a próxima!')
     this.router.navigate(['/login'])
   }
