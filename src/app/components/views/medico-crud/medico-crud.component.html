@@ -1,9 +1,10 @@
 <app-header></app-header>
-<app-nav></app-nav>
-<button mat-raised-button (click)="navigateToMedicoCreate()" color="primary">
-    Cadastrar Novo Médico
-</button>
+<div class="content">
+    <button mat-raised-button (click)="navigateToMedicoCreate()" color="primary">
+        Cadastrar Novo Médico
+    </button>
 
-<h2>Médicos cadastrados:</h2>
-<app-medico-read></app-medico-read>
+    <h2>Médicos cadastrados:</h2>
+    <app-medico-read></app-medico-read>
+</div>
 <app-footer></app-footer>
