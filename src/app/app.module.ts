@@ -21,6 +21,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { LoginComponent } from './components/login/login.component';
 import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatMenuModule} from '@angular/material/menu';
 
 import { RouterModule } from '@angular/router';
 
@@ -84,7 +87,10 @@ import { AutenticacaoGuard } from './guards/autenticacao.guard';
     HttpClientModule,
     RouterModule,
     MatButtonModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatPaginatorModule,
+    MatGridListModule,
+    MatMenuModule
   ],
   providers: [AutenticacaoGuard],
   bootstrap: [AppComponent]

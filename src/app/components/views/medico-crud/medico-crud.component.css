@@ -1,5 +1,8 @@
-button {
-    margin-bottom: 30px;
-    margin-left: 235px;
+ button {
+    margin-bottom: 20px;
     margin-top: 20px;
+} 
+
+.content{
+    margin-bottom: 8%;
 }

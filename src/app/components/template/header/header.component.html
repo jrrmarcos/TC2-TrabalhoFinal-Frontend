@@ -4,6 +4,36 @@
             <img class="logo" src="assets/logo.png" alt="logo">
         </a>
     </span>
+    <span>
+        <a routerLink="/home">
+            Clínica Médica
+        </a>
+    </span>
 
-    <h1 class="title-group">Clínica Médica</h1>
+    <span>
+        <a routerLink="/medicos">
+            Médicos
+        </a>
+    </span>
+
+    <span>
+        <a routerLink="/pacientes">
+            Pacientes
+        </a>
+    </span>
+
+    <span>
+        <a routerLink="/consultas">
+            Consultas
+        </a>
+    </span>
+
+    <span *ngIf="autenticado === true">
+        <a (click)="deslogar()">
+            <button >Deslogar</button>
+        </a>
+    </span>
+
+    
+
 </mat-toolbar>

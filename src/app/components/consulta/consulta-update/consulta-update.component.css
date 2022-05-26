@@ -1,17 +1,10 @@
 form {
     display: flex; 
     flex-direction: column;
-    margin-left: 235px;
 }
-
-.title { 
-    margin-left: 235px;
-}
-
 
 .btn1 {
     margin-top: 20px;
-    margin-left: 235px;
 }
 
 .btn2 {
