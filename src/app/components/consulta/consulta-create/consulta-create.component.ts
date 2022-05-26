@@ -1,4 +1,5 @@
 import { Location } from '@angular/common';
+import { compileDeclareClassMetadata } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -50,7 +51,7 @@ export class ConsultaCreateComponent implements OnInit {
     this.consultaForm = new FormGroup({
       idPaciente: new FormControl('', Validators.required),
       idMedico: new FormControl('', Validators.required),
-      data: new FormControl('', Validators.required),
+      data: new FormControl('', [Validators.required, this.dataValidator]),
       time: new FormControl('', Validators.required)
     });
   }
@@ -68,7 +69,40 @@ export class ConsultaCreateComponent implements OnInit {
           }
         })
       } else {
-        this.serviceConsulta.showMessage('Dados ausentes! - Preencha todos os campos', true)
+        if (this.consultaForm.get('idPaciente').invalid) {
+          if (this.consultaForm.get('idPaciente').value == '') this.servicePaciente.showMessage('O campo Paciente está vazio', true);
+        }
+
+        else if (this.consultaForm.get('idMedico').invalid) {
+          if (this.consultaForm.get('idMedico').value == '') this.servicePaciente.showMessage('O campo Médico está vazio', true);
+        }
+
+        else if (this.consultaForm.get('time').invalid) {
+          if (this.consultaForm.get('time').value == '') {
+            this.serviceConsulta.showMessage('O campo horário está vazio', true);
+          }
+        }
+  
+        else if (this.consultaForm.get('data').invalid) {
+          if (this.consultaForm.get('data').value == '') {
+            this.serviceConsulta.showMessage('O campo data está vazio', true);
+          } 
+          else{
+            const currentDate : Date = new Date();
+            currentDate.setHours(20);
+            const selectedDate : Date = new Date(this.consultaForm.get('data').value);       
+
+            const compareCurrentDate : string = currentDate.getUTCDate() + "-" + currentDate.getUTCMonth() + "-" + currentDate.getFullYear();
+            const compareSelectedDate : string = selectedDate.getUTCDate() + "-" + selectedDate.getUTCMonth() + "-" + selectedDate.getFullYear(); 
+
+            if(compareSelectedDate === compareCurrentDate) {
+              this.serviceConsulta.showMessage('A data inserida é igual a data atual, as consultas devem ser agendadas com, ao menos, um dia de antecedência', true);
+            }
+            else if (selectedDate < currentDate) { 
+              this.serviceConsulta.showMessage('A data inserida é anterior a data atual', true);
+            }
+          }
+        }
       }
     }
   }
@@ -78,6 +112,13 @@ export class ConsultaCreateComponent implements OnInit {
       this.serviceConsulta.showMessage('Operação cancelada!')
       this.local.back()
     }
+  }
+
+  dataValidator(control: FormControl) : { [s: string]: boolean } {
+    const currentDate : Date = new Date();
+    currentDate.setHours(20);
+
+    if (new Date(control.value).getUTCDate() <= currentDate.getUTCDate()) return { 'invalidDate': true }
   }
 
 }

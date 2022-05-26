@@ -19,7 +19,7 @@ export class ConsultaService {
 
   showMessage(msg: string, isError: boolean = false): void {
     this.snackBar.open(msg, 'X', {
-      duration: 3000,
+      duration: 5000,
       horizontalPosition: "right",
       verticalPosition: "top",
       panelClass: isError ? ['failClass'] : ['successClass']
