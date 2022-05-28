@@ -46,11 +46,11 @@ export class ConsultaReadComponent implements OnInit {
   }
 
   getNamePaciente(id: number){
-    return ( this.paciente.filter(paciente => paciente.id == id)[0].nome ) 
+    if (this.paciente) return ( this.paciente.filter(paciente => paciente.id == id)[0].nome ) 
   }
 
   getNameMedico(id: number){
-    return ( this.medico.filter(medico => medico.id == id)[0].nome ) 
+    if (this.medico) return ( this.medico.filter(medico => medico.id == id)[0].nome ) 
   }
 
 }
