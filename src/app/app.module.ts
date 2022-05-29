@@ -42,7 +42,8 @@ import { PacienteCreateComponent } from './components/paciente/paciente-create/p
 import { PacienteUpdateComponent } from './components/paciente/paciente-update/paciente-update.component';
 import { PacienteReadComponent } from './components/paciente/paciente-read/paciente-read.component';
 import { PacienteDeleteComponent } from './components/paciente/paciente-delete/paciente-delete.component';
-import { PacienteCrudComponent } from './components/views/paciente-crud/paciente-crud.component'
+import { PacienteCrudComponent } from './components/views/paciente-crud/paciente-crud.component';
+import { ListarEspecialidadesComponent } from './components/especialidade/listar-especialidades/listar-especialidades.component'
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { PacienteCrudComponent } from './components/views/paciente-crud/paciente
     PacienteUpdateComponent,
     PacienteReadComponent,
     PacienteDeleteComponent,
-    PacienteCrudComponent
+    PacienteCrudComponent,
+    ListarEspecialidadesComponent
   ],
   imports: [
     BrowserModule,

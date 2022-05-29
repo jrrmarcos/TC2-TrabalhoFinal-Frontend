@@ -4,6 +4,10 @@ table {
     height: 100%;
 }
 
+button {
+    margin-bottom: 20px;
+    margin-right: 10px;
+} 
 
 .edit, .view {
     margin-right: 10px;

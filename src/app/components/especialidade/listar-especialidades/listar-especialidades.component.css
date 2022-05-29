@@ -1,0 +1,26 @@
+table {
+    width: 100%;
+    color: primary;
+    height: 100%;
+}
+
+.view {
+    margin-right: 10px;
+}
+
+.view > i {
+    color: #000;
+}
+
+.content{
+    margin-bottom: 3%;
+}
+
+.button {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+}

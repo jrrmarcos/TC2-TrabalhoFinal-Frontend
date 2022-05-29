@@ -1,4 +1,9 @@
 <div class="content">
+    <button mat-raised-button color="primary" (click)="onShowOrClose()">{{msgBotao}}</button>
+    <button mat-raised-button color="primary" *ngIf="medicos !== medicosCopia;" (click)="filtraListaMedicos(0)">Retirar Filtro</button>
+
+    <app-listar-especialidades  *ngIf="mostraEspecialidades === true; "[especialidades]="especialidades" (filtraListaMedicos)="filtraListaMedicos($event)"></app-listar-especialidades>
+
     <div class="mat-elevation-z4">
         <table mat-table [dataSource]="medicos">
 
