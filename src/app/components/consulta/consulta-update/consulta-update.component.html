@@ -1,6 +1,11 @@
 <app-header></app-header>
-<mat-card>
+<mat-card *ngIf="consulta">
     <mat-card-title >Atualização de Consulta</mat-card-title>
+    <small>Você está alterando a consulta <strong>{{consulta.id}}</strong>, 
+        entre o médico: <strong>{{ getNameMedico(consulta.idMedico) }}</strong>, 
+        paciente: <strong>{{ getNamePaciente(consulta.idPaciente) }}</strong>, 
+        na data: <strong>{{consulta.data}}</strong>
+    </small>
     <form [formGroup]="consultaForm">
 
         <mat-form-field>

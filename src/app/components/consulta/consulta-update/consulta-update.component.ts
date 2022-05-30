@@ -130,4 +130,12 @@ export class ConsultaUpdateComponent implements OnInit {
     if (new Date(control.value).getUTCDate() <= currentDate.getUTCDate()) return { 'invalidDate': true }
   }
 
+  getNamePaciente(id: number){
+    if (this.paciente) return ( this.paciente.filter(paciente => paciente.id == id)[0].nome ) 
+  }
+
+  getNameMedico(id: number){
+    if (this.medico) return ( this.medico.filter(medico => medico.id == id)[0].nome ) 
+  }
+
 }

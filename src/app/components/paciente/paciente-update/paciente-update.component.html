@@ -1,6 +1,7 @@
 <app-header></app-header>
-<mat-card>
+<mat-card *ngIf="paciente">
     <mat-card-title >Atualização de Registro do Paciente</mat-card-title>
+    <small>Você está alterando os dados do paciente: <strong>{{paciente.nome}}</strong></small>
     <form [formGroup]="pacienteForm">
         <mat-form-field>
             <input matInput placeholder="Nome" formControlName="nome" name="name">
