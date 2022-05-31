@@ -46,9 +46,7 @@ export class MedicoCreateComponent implements OnInit {
     if (this.auth.autenticado()) {
       if (this.medicoForm.valid) {
         this.medico = this.medicoForm.value;
-        alert(this.medico.idEspecialidade)
         this.serviceMedico.addMedico(this.medico).subscribe(res => {
-          alert(JSON.stringify(res));
           if (res.status !== "Erro") {
             this.serviceMedico.showMessage('Médico cadastrado!')
             this.router.navigate(['/medicos']);

@@ -68,7 +68,7 @@
                             [ngClass]="loginRegistroIsValid()? 'valid-login-registro material-icons' : 'invalid-login-registro material-icons'">error</span>
                     </div>
 
-                    <input class="input" placeholder="Senha" formControlName="senha">
+                    <input class="input" placeholder="Senha" formControlName="senha" type="password">
                     <div *ngIf="senhaRegistroIsValid()">
                         <span
                             [ngClass]="senhaRegistroIsValid()? 'valid-senha-registro material-icons' : 'invalid-senha-registro material-icons'">check</span>
@@ -79,7 +79,7 @@
                             [ngClass]="senhaRegistroIsValid()? 'valid-senha-registro material-icons' : 'invalid-senha-registro material-icons'">error</span>
                     </div>
 
-                    <input class="input" placeholder="Confirme a Senha" formControlName="senhaconfirm">
+                    <input class="input" placeholder="Confirme a Senha" formControlName="senhaconfirm" type="password">
                     <div *ngIf="confirmSenhaRegistroIsValid()">
                         <span
                             [ngClass]="confirmSenhaRegistroIsValid()? 'valid-senha-confirm-registro material-icons' : 'invalid-senha-confirm-registro material-icons'">check</span>

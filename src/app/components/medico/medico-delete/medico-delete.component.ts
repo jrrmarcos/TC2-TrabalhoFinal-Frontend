@@ -37,9 +37,14 @@ export class MedicoDeleteComponent implements OnInit {
 
   deleteMedico(): void {
     if (this.auth.autenticado()) {
-      this.serviceMedico.deleteMedico(this.medico).subscribe(() => {
-        this.serviceMedico.showMessage('Médico removido!')
-        this.router.navigate(['/medicos'])
+      this.serviceMedico.deleteMedico(this.medico).subscribe((res) => {
+        if (res.status !== 'Erro') {
+          this.serviceMedico.showMessage('Médico removido!')
+          this.router.navigate(['/medicos'])
+        } else { 
+          this.serviceMedico.showMessage('Houve algum problema!', true)
+          this.router.navigate(['/medicos'])
+        }
       })
     }
   }

@@ -32,9 +32,14 @@ export class PacienteDeleteComponent implements OnInit {
 
   deletePaciente(): void {
     if (this.auth.autenticado()) {
-      this.servicePaciente.deletePaciente(this.paciente).subscribe(() => {
-        this.servicePaciente.showMessage('Paciente removido!')
-        this.router.navigate(['/pacientes'])
+      this.servicePaciente.deletePaciente(this.paciente).subscribe((res) => {
+        if (res.status !== 'Erro') {
+          this.servicePaciente.showMessage('Paciente removido!')
+          this.router.navigate(['/pacientes'])
+        } else {
+          this.servicePaciente.showMessage('Houve um erro!', true)
+          this.router.navigate(['/pacientes'])
+        }
       })
     }
   }

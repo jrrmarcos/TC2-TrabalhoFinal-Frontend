@@ -127,7 +127,7 @@ export class ConsultaUpdateComponent implements OnInit {
     const currentDate : Date = new Date();
     currentDate.setHours(20);
 
-    if (new Date(control.value).getUTCDate() <= currentDate.getUTCDate()) return { 'invalidDate': true }
+    if (new Date(control.value).getTime() <= currentDate.getTime()) return { 'invalidDate': true }
   }
 
   getNamePaciente(id: number){

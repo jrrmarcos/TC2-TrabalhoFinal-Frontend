@@ -37,7 +37,6 @@ export class PacienteCreateComponent implements OnInit {
   createPaciente() {
     if (this.auth.autenticado()) {
       if (this.pacienteForm.valid) {
-        console.log(this.pacienteForm.valid)
         this.paciente = this.pacienteForm.value;
         this.servicePaciente.addPaciente(this.paciente).subscribe(res => {
           if (res.status !== "Erro") {
